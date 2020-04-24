@@ -18,7 +18,7 @@
         width="50%"
       />
     </v-container>
-    <v-footer absolute>
+    <v-footer absolute color="transparent">
       <v-col class="text-center pa-0 overline">
         <div>
           Made with ❤ by
