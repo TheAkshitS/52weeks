@@ -4,14 +4,14 @@
       <GoalCard v-for="i in 10" :key="i" :index="i" />
     </v-row>
 
-    <img
+    <!-- <img
       style="z-index: 0"
       src="@/assets/images/wallet.svg"
       loading="lazy"
       alt="Wallet image"
       width="50%"
       class="wallet-image ma-5"
-    />
+    /> -->
   </v-container>
 </template>
 
