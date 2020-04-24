@@ -8,9 +8,9 @@
   >
     <div class="d-flex flex-no-wrap justify-space-between">
       <div>
-        <v-card-title class="headline">Test run</v-card-title>
+        <v-card-title class="headline">Test run {{ index }}</v-card-title>
 
-        <v-card-subtitle>Feb 21</v-card-subtitle>
+        <v-card-subtitle class="overline">Feb {{ 10 + index }}</v-card-subtitle>
         <v-card-subtitle>$1,236</v-card-subtitle>
       </div>
 
