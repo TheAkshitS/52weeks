@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <GoalCard v-for="i in 5" :key="i" :index="i" />
+      <GoalCard v-for="i in 10" :key="i" :index="i" />
     </v-row>
 
     <img

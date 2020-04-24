@@ -29,7 +29,7 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-spacer></v-spacer>
+        <v-spacer />
         <v-btn class="mx-3" color="primary" rounded @click="createGoal"
           >Create</v-btn
         >

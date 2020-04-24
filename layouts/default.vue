@@ -109,7 +109,6 @@
 
     <v-bottom-navigation
       app
-      hide-on-scroll
       value="active.sync"
       grow
       color="primary"
