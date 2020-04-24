@@ -36,7 +36,7 @@
     <v-progress-linear
       v-model="value"
       height="5"
-      color="secondary"
+      color="green"
     ></v-progress-linear>
   </v-card>
 </template>
