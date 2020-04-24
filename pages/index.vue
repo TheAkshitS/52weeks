@@ -1,41 +1,26 @@
 <template>
-  <v-layout column justify-center align-center>
-    <v-flex>
-      <div>
-        <img
-          src="@/assets/images/wallet.svg"
-          loading="lazy"
-          alt="Wallet image"
-          width="50%"
-          class="wallet-image ma-5"
-        />
+  <v-container>
+    <v-row>
+      <GoalCard v-for="i in 5" :key="i" :index="i" />
+    </v-row>
 
-        <!-- <v-fab-transition>
-          <v-btn
-            v-show="!hidden"
-            relative
-            bottom
-            right
-            fab
-            dark
-            color="primary"
-            @click="sheet = true"
-          >
-            <v-icon dark>mdi-plus</v-icon>
-          </v-btn>
-        </v-fab-transition> -->
-      </div>
-    </v-flex>
-  </v-layout>
+    <img
+      style="z-index: 0"
+      src="@/assets/images/wallet.svg"
+      loading="lazy"
+      alt="Wallet image"
+      width="50%"
+      class="wallet-image ma-5"
+    />
+  </v-container>
 </template>
 
 <script>
-// import SvgWallet from '@/components/SvgWallet'
-
+import GoalCard from '@/components/GoalCard'
 export default {
-  // components: {
-  //   SvgWallet
-  // },
+  components: {
+    GoalCard
+  },
 
   data() {
     return {}
