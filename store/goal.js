@@ -1,4 +1,4 @@
-import goalDb from '@/assets/goalDb'
+import goalDb from '~/database/goalDb'
 
 export const state = () => ({ goals: [] })
 
