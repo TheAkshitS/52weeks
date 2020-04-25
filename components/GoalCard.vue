@@ -12,7 +12,11 @@
 
         <v-card-subtitle class="overline"
           ><v-icon left small class="ma">mdi-calendar-range</v-icon
-          >{{ goal.startDate }}</v-card-subtitle
+          >{{
+            $dayjs(goal.startDate)
+              .add(1, 'year')
+              .format('DD/MM/YY')
+          }}</v-card-subtitle
         >
         <v-card-subtitle
           ><v-icon left class="ma-0">mdi-cash</v-icon>
