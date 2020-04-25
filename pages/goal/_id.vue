@@ -19,7 +19,7 @@
 export default {
   computed: {
     goal() {
-      return this.$store.getters.goals.find(
+      return this.$store.getters['goal/goals'].find(
         (goal) => goal.id === Number(this.$route.params.id)
       )
     }

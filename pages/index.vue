@@ -29,7 +29,7 @@ export default {
 
   computed: {
     goals() {
-      return this.$store.getters.goals
+      return this.$store.getters['goal/goals']
     }
   },
 

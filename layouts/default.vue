@@ -202,7 +202,7 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('fetchGoals')
+    this.$store.dispatch('goal/fetchGoals')
   },
 
   beforeMount() {
@@ -218,7 +218,7 @@ export default {
 
   methods: {
     async createGoal() {
-      await this.$store.dispatch('addGoal', this.goal)
+      await this.$store.dispatch('goal/addGoal', this.goal)
       this.sheet = false
     },
 
