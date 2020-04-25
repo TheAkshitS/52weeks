@@ -1,17 +1,18 @@
 <template>
   <v-container>
-    <v-row class="mt-2">
+    <v-row v-if="goals.length" class="mt-2">
       <GoalCard v-for="goal in goals" :key="goal.id" :goal="goal" />
     </v-row>
 
-    <!-- <img
+    <img
+      v-else
       style="z-index: 0"
       src="@/assets/images/wallet.svg"
       loading="lazy"
       alt="Wallet image"
       width="50%"
       class="wallet-image ma-5"
-    /> -->
+    />
   </v-container>
 </template>
 
