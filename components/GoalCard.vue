@@ -10,8 +10,14 @@
       <div>
         <v-card-title class="headline">{{ goal.name }}</v-card-title>
 
-        <v-card-subtitle class="overline">{{ goal.startDate }}</v-card-subtitle>
-        <v-card-subtitle>${{ goal.amount }}</v-card-subtitle>
+        <v-card-subtitle class="overline"
+          ><v-icon left small class="ma">mdi-calendar-range</v-icon
+          >{{ goal.startDate }}</v-card-subtitle
+        >
+        <v-card-subtitle
+          ><v-icon left class="ma-0">mdi-cash</v-icon>
+          {{ totalBalanceAtTheEnd.toLocaleString() }}</v-card-subtitle
+        >
       </div>
 
       <v-avatar class="ma-1" size="125">
@@ -52,6 +58,19 @@ export default {
   data() {
     return {
       value: 30
+    }
+  },
+
+  computed: {
+    totalBalanceAtTheEnd() {
+      const totalWeeks = 52
+      let accountBalance = 0
+
+      for (let week = 1; week <= totalWeeks; week++) {
+        accountBalance = accountBalance + this.goal.amount * week
+      }
+
+      return accountBalance
     }
   }
 }
