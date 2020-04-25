@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row class="mt-2">
       <GoalCard v-for="goal in goals" :key="goal.id" :goal="goal" />
     </v-row>
 
