@@ -56,7 +56,7 @@
             right
             absolute
             color="primary"
-            @click="$router.push({ name: 'goal' })"
+            @click="sheet = true"
           >
             <v-icon>mdi-plus</v-icon>
           </v-btn>
@@ -70,11 +70,13 @@
           >{{ item.title }}</v-btn
         >
       </div>
-
       <v-btn icon class="ml-2" @click="changeTheme">
         <v-icon v-if="this.$vuetify.theme.dark">mdi-brightness-7</v-icon>
         <v-icon v-else>mdi-brightness-4</v-icon>
       </v-btn>
+      <!-- <v-btn icon @click="sheet = true">
+        <v-icon>mdi-dots-vertical</v-icon>
+      </v-btn> -->
     </v-app-bar>
 
     <!-- MAIN CONTENT -->
@@ -83,29 +85,68 @@
     </v-content>
 
     <!-- FOOTER -->
-    <!-- <v-bottom-sheet v-model="sheet" class="text-center">
+    <v-bottom-sheet v-model="sheet">
       <v-list>
-        <v-subheader>Create new</v-subheader>
-        <v-list-item
-          v-for="tile in tiles"
-          :key="tile.title"
-          @click="sheet = false"
-        >
-
-          <v-list-item-avatar>
-            <v-avatar size="32px" tile>
-              <img
-                :src="
-                  `https://cdn.vuetifyjs.com/images/bottom-sheets/${tile.img}`
-                "
-                :alt="tile.title"
-              />
-            </v-avatar>
-          </v-list-item-avatar>
-          <v-list-item-title>{{ tile.title }}</v-list-item-title>
-        </v-list-item>
+        <v-container>
+          <h2 class="title">Create a new new goal 🎯</h2>
+          <v-form>
+            <v-row>
+              <v-col cols="12" md="4">
+                <v-text-field
+                  v-model="goal.name"
+                  label="What is the name of your goal?"
+                  placeholder="Name"
+                  outlined
+                  required
+                  append-icon="mdi-form-textbox"
+                />
+                <v-text-field
+                  v-model.number="goal.amount"
+                  label="How much do you want to save per week?"
+                  placeholder="Amount"
+                  type="number"
+                  pattern="[0-9]*"
+                  outlined
+                  required
+                  append-icon="mdi-cash"
+                />
+                <v-menu
+                  v-model="menu2"
+                  :close-on-content-click="false"
+                  :nudge-right="40"
+                  transition="scale-transition"
+                  offset-y
+                  min-width="290px"
+                >
+                  <template v-slot:activator="{ on }">
+                    <v-text-field
+                      v-model="goal.startDate"
+                      label="When do you plan to start?"
+                      placeholder="Start date"
+                      outlined
+                      required
+                      append-icon="mdi-calendar-range"
+                      readonly
+                      v-on="on"
+                    ></v-text-field>
+                  </template>
+                  <v-date-picker
+                    v-model="goal.startDate"
+                    @input="menu2 = false"
+                  ></v-date-picker>
+                </v-menu>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-spacer />
+              <v-btn class="mx-3" color="primary" rounded @click="createGoal"
+                >Create</v-btn
+              >
+            </v-row>
+          </v-form>
+        </v-container>
       </v-list>
-    </v-bottom-sheet> -->
+    </v-bottom-sheet>
 
     <v-bottom-navigation
       app
@@ -134,6 +175,12 @@ export default {
       activeBtn: 1,
       drawer: false,
       hidden: true,
+      menu2: false,
+      goal: {
+        name: '',
+        amount: '',
+        startDate: ''
+      },
       items: [
         {
           icon: 'mdi-target',
@@ -154,6 +201,10 @@ export default {
     }
   },
 
+  created() {
+    this.$store.dispatch('fetchGoals')
+  },
+
   beforeMount() {
     // TODO: Refactor this
     localStorage.getItem('darkMode') === 'true'
@@ -166,6 +217,11 @@ export default {
   },
 
   methods: {
+    async createGoal() {
+      await this.$store.dispatch('addGoal', this.goal)
+      this.sheet = false
+    },
+
     changeTheme() {
       const metaThemeColor = document.querySelector('meta[name=theme-color]')
 

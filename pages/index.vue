@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <GoalCard v-for="i in 10" :key="i" :index="i" />
+      <GoalCard v-for="goal in goals" :key="goal.id" :goal="goal" />
     </v-row>
 
     <!-- <img
@@ -24,6 +24,12 @@ export default {
 
   data() {
     return {}
+  },
+
+  computed: {
+    goals() {
+      return this.$store.getters.goals
+    }
   },
 
   head() {

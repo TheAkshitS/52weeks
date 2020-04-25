@@ -16,6 +16,7 @@
             v-model.number="goal.amount"
             label="How much do you want to save per week?"
             placeholder="Amount"
+            type="number"
             outlined
             required
           />
@@ -39,17 +40,6 @@
 </template>
 
 <script>
-// import { openDB } from 'idb'
-
-// const db = await openDB('goals', 1, {
-//   upgrade(db) {
-//     db.createObjectStore('goals', {
-//       keyPath: 'name',
-//       autoIncrement: true
-//     })
-//   }
-// })
-
 export default {
   data() {
     return {
@@ -62,14 +52,7 @@ export default {
   },
 
   methods: {
-    async createGoal() {
-      // await db.add('goals', this.goal)
-      // const db = await openDB('goals', 1, {
-      //   upgrade(db) {
-      //     db.createObjectStore(this.goal)
-      //   }
-      // })
-    }
+    async createGoal() {}
   },
 
   head() {

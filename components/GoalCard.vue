@@ -4,14 +4,14 @@
     color="primary"
     dark
     width="320"
-    :to="`/goal/${index}`"
+    :to="`/goal/${goal.id}`"
   >
     <div class="d-flex flex-no-wrap justify-space-between">
       <div>
-        <v-card-title class="headline">Test run {{ index }}</v-card-title>
+        <v-card-title class="headline">{{ goal.name }}</v-card-title>
 
-        <v-card-subtitle class="overline">Feb {{ 10 + index }}</v-card-subtitle>
-        <v-card-subtitle>$1,236</v-card-subtitle>
+        <v-card-subtitle class="overline">{{ goal.startDate }}</v-card-subtitle>
+        <v-card-subtitle>${{ goal.amount }}</v-card-subtitle>
       </div>
 
       <v-avatar class="ma-1" size="125">
@@ -44,8 +44,8 @@
 <script>
 export default {
   props: {
-    index: {
-      type: Number,
+    goal: {
+      type: Object,
       required: true
     }
   },
