@@ -18,9 +18,9 @@
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/pwa": "^3.0.0-0",
-    "idb": "^5.0.2",
     "nuxt": "^2.0.0",
-    "nuxt-dayjs-module": "^1.1.2"
+    "nuxt-dayjs-module": "^1.1.2",
+    "vuex-persistedstate": "^3.0.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.0",
