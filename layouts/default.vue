@@ -62,7 +62,7 @@
           </v-btn>
         </v-fab-transition>
       </template>
-      <div v-for="item in items" :key="item.title">
+      <div v-for="item in items" :key="item.title" class="mr-2">
         <v-btn
           class="ml-2 d-none d-sm-flex text-capitalize font-weight-light"
           :to="item.to"
@@ -70,7 +70,7 @@
           >{{ item.title }}</v-btn
         >
       </div>
-      <v-btn icon class="ml-2" @click="changeTheme">
+      <v-btn icon @click="changeTheme">
         <v-icon v-if="this.$vuetify.theme.dark">mdi-brightness-7</v-icon>
         <v-icon v-else>mdi-brightness-4</v-icon>
       </v-btn>
@@ -137,7 +137,7 @@
                 </v-menu>
               </v-col>
             </v-row>
-            <v-row>
+            <v-row class="mb-5">
               <v-spacer />
               <v-btn class="mx-3" color="primary" rounded @click="createGoal"
                 >Create</v-btn
@@ -193,11 +193,7 @@ export default {
           to: '/about'
         }
       ],
-      sheet: false,
-      tiles: [
-        { img: 'keep.png', title: 'Goal', to: 'goal' },
-        { img: 'inbox.png', title: 'Inbox', to: 'index' }
-      ]
+      sheet: false
     }
   },
 
