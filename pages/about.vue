@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container>
-      <h2 class="title">52 weeks money challenge</h2>
+      <h2 class="title mb-1">52 weeks money challenge</h2>
       <p class="body-1">
         The idea is simple: You start by socking away just $1 in the first week
         of the year, and then gradually increase your savings by a dollar a week
