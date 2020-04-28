@@ -40,7 +40,7 @@
             <v-col cols="12" md="4">
               <div v-if="selectedAction === 'edit'">
                 <v-text-field
-                  v-model="goalName"
+                  v-model="newGoalName"
                   label="What is the name of your goal?"
                   placeholder="Name"
                   outlined
@@ -75,7 +75,7 @@ export default {
     return {
       goalBottomSheet: false,
       selectedAction: null,
-      goalName: '',
+      newGoalName: '',
       optionItems: [
         {
           icon: 'mdi-pencil-outline',
@@ -91,22 +91,35 @@ export default {
 
   computed: {
     goal() {
-      return this.$store.getters['goal/goals'].find(
-        (goal) => goal.id === Number(this.$route.params.id)
-      )
+      return {
+        ...this.$store.getters['goal/goals'].find(
+          (goal) => goal.id === this.$route.params.id
+        )
+      }
     }
   },
 
   methods: {
     optionAction(optionTitle) {
       this.selectedAction = optionTitle
-      this.goalName = this.goal.name
+      this.newGoalName = this.goal.name
       this.goalBottomSheet = true
     },
 
     goalOptionSubmit() {
       this.goalBottomSheet = false
-      if (this.selectedAction === 'delete') this.$router.push('/')
+
+      if (this.selectedAction === 'edit') {
+        const newGoal = { ...this.goal }
+
+        newGoal.name = this.newGoalName
+        this.$store.commit('goal/UPDATE_GOAL', newGoal)
+        this.$store.dispatch('ui/setSnackbar', { text: 'Goal updated 👌' })
+      } else if (this.selectedAction === 'delete') {
+        this.$store.commit('goal/DELETE_GOAL', this.$route.params.id)
+        this.$store.dispatch('ui/setSnackbar', { text: 'Goal deleted ⚰' })
+        this.$router.push('/')
+      }
     }
   },
 
