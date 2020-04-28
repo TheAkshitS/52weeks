@@ -41,7 +41,7 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'Home 52weeks money challenge'
+          content: '52 weeks money challenge'
         }
       ]
     }
