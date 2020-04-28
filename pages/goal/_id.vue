@@ -5,7 +5,10 @@
         ><h2 class="heading">🎯 {{ goal.name }}</h2></v-col
       >
       <v-col class="text-right">
-        <v-menu bottom left>
+        <v-btn icon @click="goalObjectiveDialog = true">
+          <v-icon>mdi-finance</v-icon>
+        </v-btn>
+        <v-menu bottom>
           <template v-slot:activator="{ on }">
             <v-btn icon v-on="on">
               <v-icon>mdi-dots-vertical</v-icon>
@@ -28,7 +31,56 @@
         </v-menu>
       </v-col>
     </v-row>
+
     <p>{{ goal }}</p>
+
+    <v-dialog
+      v-model="goalObjectiveDialog"
+      fullscreen
+      hide-overlay
+      transition="dialog-bottom-transition"
+    >
+      <v-card>
+        <v-toolbar dark color="primary">
+          <v-toolbar-title>🎯 Objective Details</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-toolbar-items>
+            <v-btn icon dark @click="goalObjectiveDialog = false">
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+          </v-toolbar-items>
+        </v-toolbar>
+        <v-container>
+          <v-simple-table>
+            <template v-slot:default>
+              <thead>
+                <tr>
+                  <th class="text-center">Week</th>
+                  <th class="text-center">Save</th>
+                  <th class="text-center">Date</th>
+                  <th class="text-center">Deposited</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="week in 52" :key="week" class="text-center">
+                  <td class="text-center">{{ week }}</td>
+                  <td class="text-center">${{ goal.amount * week }}00</td>
+                  <td class="text-center">
+                    {{
+                      $dayjs(goal.startDate)
+                        .add(week, 'week')
+                        .format('DD/MM/YY')
+                    }}
+                  </td>
+                  <td class="text-center">No</td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
+        </v-container>
+      </v-card>
+    </v-dialog>
+
     <v-bottom-sheet v-model="goalBottomSheet">
       <v-list>
         <v-container>
@@ -85,7 +137,8 @@ export default {
           icon: 'mdi-trash-can-outline',
           title: 'delete'
         }
-      ]
+      ],
+      goalObjectiveDialog: false
     }
   },
 
