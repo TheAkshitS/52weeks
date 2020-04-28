@@ -2,7 +2,7 @@
   <v-snackbar
     :value="snackbar.visible"
     top
-    color="primary"
+    :color="snackbar.color"
     :timeout="snackbar.timeout"
   >
     {{ snackbar.text }}

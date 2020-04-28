@@ -12,6 +12,7 @@ export const actions = {
   setSnackbar({ commit }, snackbar) {
     snackbar.visible = true
     snackbar.timeout = 1800
+    snackbar.color = snackbar.color || 'success'
 
     // TODO: Check visible
     setTimeout(function() {
