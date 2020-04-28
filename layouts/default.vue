@@ -1,44 +1,7 @@
 <template>
   <v-app>
-    <!-- LEFT NAVIGATION DRAWER -->
-    <!-- <v-navigation-drawer v-model="drawer" app temporary>
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title
-            >52 Weeks
-            <span class="font-weight-medium"
-              >Money Challenge 💪</span
-            ></v-list-item-title
-          >
-        </v-list-item-content>
-      </v-list-item>
-      <v-divider></v-divider>
-      <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          dense
-          shaped
-          router
-          exact
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer> -->
-
     <!-- APP BAR -->
     <v-app-bar fixed app flat>
-      <!-- <v-app-bar-nav-icon
-        class="d-md-none d-lg-none"
-        @click.stop="drawer = !drawer"
-      /> -->
       <v-toolbar-title
         ><n-link to="/" style="text-decoration: none;"
           >52 Weeks
@@ -56,7 +19,7 @@
             right
             absolute
             color="primary"
-            @click="sheet = true"
+            @click="openBottomSheet"
           >
             <v-icon>mdi-plus</v-icon>
           </v-btn>
@@ -74,9 +37,6 @@
         <v-icon v-if="this.$vuetify.theme.dark">mdi-brightness-7</v-icon>
         <v-icon v-else>mdi-brightness-4</v-icon>
       </v-btn>
-      <!-- <v-btn icon @click="sheet = true">
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn> -->
     </v-app-bar>
 
     <!-- MAIN CONTENT -->
@@ -89,7 +49,7 @@
       <v-list>
         <v-container>
           <h2 class="title">Create a new new goal 🎯</h2>
-          <v-form>
+          <v-form @submit.prevent="createGoal">
             <v-row>
               <v-col cols="12" md="4">
                 <v-text-field
@@ -98,6 +58,7 @@
                   placeholder="Name"
                   outlined
                   required
+                  autocomplete="false"
                   append-icon="mdi-form-textbox"
                 />
                 <v-text-field
@@ -108,6 +69,7 @@
                   pattern="[0-9]*"
                   outlined
                   required
+                  autocomplete="false"
                   append-icon="mdi-cash"
                 />
                 <v-menu
@@ -139,7 +101,7 @@
             </v-row>
             <v-row class="mb-5">
               <v-spacer />
-              <v-btn class="mx-3" color="primary" rounded @click="createGoal"
+              <v-btn class="mx-3" color="primary" rounded type="submit"
                 >Create</v-btn
               >
             </v-row>
@@ -147,28 +109,18 @@
         </v-container>
       </v-list>
     </v-bottom-sheet>
-
-    <v-bottom-navigation
-      app
-      value="active.sync"
-      grow
-      color="primary"
-      class="d-sm-none"
-    >
-      <v-btn to="/">
-        <span>My Goals</span>
-        <v-icon>mdi-target</v-icon>
-      </v-btn>
-      <v-btn to="/about">
-        <span>About</span>
-        <v-icon>mdi-information-outline</v-icon>
-      </v-btn>
-    </v-bottom-navigation>
+    <app-bottom-nav />
+    <app-snackbar />
   </v-app>
 </template>
 
 <script>
 export default {
+  components: {
+    AppBottomNav: () => import('@/components/AppBottomNav'),
+    AppSnackbar: () => import('@/components/AppSnackbar')
+  },
+
   data() {
     return {
       title: '52 Weeks Money Challenge 💪',
@@ -177,10 +129,14 @@ export default {
       hidden: true,
       menu2: false,
       goal: {
+        id: Math.random()
+          .toString(16)
+          .slice(2),
         name: '',
         amount: '',
         startDate: ''
       },
+      requiredRules: [(v) => !!v || 'Name is required'],
       items: [
         {
           icon: 'mdi-target',
@@ -197,10 +153,6 @@ export default {
     }
   },
 
-  created() {
-    this.$store.dispatch('goal/fetchGoals')
-  },
-
   beforeMount() {
     // TODO: Refactor this
     localStorage.getItem('darkMode') === 'true'
@@ -214,8 +166,25 @@ export default {
 
   methods: {
     async createGoal() {
-      await this.$store.dispatch('goal/addGoal', this.goal)
+      await this.$store.commit('goal/CREATE_GOAL', this.goal)
       this.sheet = false
+      this.$store.dispatch('ui/setSnackbar', { text: 'Goal created 🎉' })
+    },
+
+    openBottomSheet() {
+      this.resetNewGoalForm()
+      this.sheet = true
+    },
+
+    resetNewGoalForm() {
+      this.goal = {
+        id: Math.random()
+          .toString(16)
+          .slice(2),
+        name: '',
+        amount: '',
+        startDate: ''
+      }
     },
 
     changeTheme() {
@@ -238,6 +207,7 @@ export default {
 .page-enter-active {
   transition: opacity 0.5s;
 }
+
 .page-enter {
   opacity: 0;
 }
