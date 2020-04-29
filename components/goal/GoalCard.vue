@@ -31,16 +31,6 @@
           alt="Wallet image"
           class="wallet-image ma-5"
         />
-        <!-- <v-progress-circular
-          rotate="360"
-          size="70"
-          width="7"
-          :value="value"
-          class="overline"
-          color="white"
-        >
-          {{ value }}
-        </v-progress-circular> -->
       </v-avatar>
     </div>
     <v-progress-linear
@@ -59,6 +49,7 @@ export default {
       required: true
     }
   },
+
   data() {
     return {
       value: 30
