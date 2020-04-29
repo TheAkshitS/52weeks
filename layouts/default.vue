@@ -37,6 +37,9 @@
         <v-icon v-if="this.$vuetify.theme.dark">mdi-brightness-7</v-icon>
         <v-icon v-else>mdi-brightness-4</v-icon>
       </v-btn>
+      <v-btn icon @click="$router.push('/settings')">
+        <v-icon>mdi-dots-vertical</v-icon>
+      </v-btn>
     </v-app-bar>
 
     <!-- MAIN CONTENT -->
@@ -94,6 +97,7 @@
                   </template>
                   <v-date-picker
                     v-model="goal.startDate"
+                    :min="new Date().toISOString()"
                     @input="menu2 = false"
                   ></v-date-picker>
                 </v-menu>
@@ -101,7 +105,12 @@
             </v-row>
             <v-row class="mb-5">
               <v-spacer />
-              <v-btn class="mx-3" color="primary" rounded type="submit"
+              <v-btn
+                class="mx-3"
+                color="primary"
+                rounded
+                type="submit"
+                :disabled="disabledCreateGoal"
                 >Create</v-btn
               >
             </v-row>
@@ -134,7 +143,7 @@ export default {
           .slice(2),
         name: '',
         amount: '',
-        startDate: ''
+        startDate: new Date().toISOString().substring(0, 10)
       },
       requiredRules: [(v) => !!v || 'Name is required'],
       items: [
@@ -150,6 +159,12 @@ export default {
         }
       ],
       sheet: false
+    }
+  },
+
+  computed: {
+    disabledCreateGoal() {
+      return [this.goal.name, this.goal.amount].includes('')
     }
   },
 
@@ -183,7 +198,7 @@ export default {
           .slice(2),
         name: '',
         amount: '',
-        startDate: ''
+        startDate: new Date().toISOString().substring(0, 10)
       }
     },
 
