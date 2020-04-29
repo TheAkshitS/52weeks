@@ -31,9 +31,6 @@
 
 <script>
 export default {
-  mounted() {
-    window.navigator.vibrate(2000)
-  },
   head() {
     return {
       title: 'About',
