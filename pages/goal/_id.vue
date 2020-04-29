@@ -32,7 +32,27 @@
       </v-col>
     </v-row>
 
-    <p>{{ goal }}</p>
+    <v-card color="primary" dark>
+      <div class="d-flex flex-no-wrap justify-space-between">
+        <div class="text-right">
+          <v-card-title class="headline">title</v-card-title>
+
+          <v-card-subtitle>Sub Title</v-card-subtitle>
+        </div>
+        <v-avatar class="" size="125" tile>
+          <v-progress-circular
+            rotate="360"
+            size="70"
+            width="7"
+            :value="value"
+            class="overline"
+            color="white"
+          >
+            {{ value }}%
+          </v-progress-circular>
+        </v-avatar>
+      </div>
+    </v-card>
 
     <v-dialog
       v-model="goalObjectiveDialog"
@@ -55,10 +75,13 @@
             <template v-slot:default>
               <thead>
                 <tr>
-                  <th class="text-center">Week</th>
-                  <th class="text-center">Save</th>
-                  <th class="text-center">Date</th>
-                  <th class="text-center">Deposited</th>
+                  <th
+                    v-for="tableTitle in tableTitles"
+                    :key="tableTitle"
+                    class="text-center"
+                  >
+                    {{ tableTitle }}
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -138,7 +161,9 @@ export default {
           title: 'delete'
         }
       ],
-      goalObjectiveDialog: false
+      tableTitles: ['Week', 'Save', 'Date', 'Deposited'],
+      goalObjectiveDialog: false,
+      value: 30
     }
   },
 
