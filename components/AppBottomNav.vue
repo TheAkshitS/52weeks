@@ -6,13 +6,20 @@
     color="primary"
     class="d-sm-none"
   >
-    <v-btn to="/">
-      <span>My Goals</span>
-      <v-icon>mdi-target</v-icon>
-    </v-btn>
-    <v-btn to="/about">
-      <span>About</span>
-      <v-icon>mdi-information-outline</v-icon>
+    <v-btn v-for="item in navItems" :key="item.name" :to="item.to">
+      <span>{{ item.title }}</span>
+      <v-icon>{{ item.icon }}</v-icon>
     </v-btn>
   </v-bottom-navigation>
 </template>
+
+<script>
+export default {
+  props: {
+    navItems: {
+      type: Array,
+      required: true
+    }
+  }
+}
+</script>
