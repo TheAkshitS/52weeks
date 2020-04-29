@@ -25,7 +25,7 @@
           </v-btn>
         </v-fab-transition>
       </template>
-      <div v-for="item in items" :key="item.title" class="mr-2">
+      <div v-for="item in navItems" :key="item.title" class="mr-2">
         <v-btn
           class="ml-2 d-none d-sm-flex text-capitalize font-weight-light"
           :to="item.to"
@@ -36,9 +36,6 @@
       <v-btn icon @click="changeTheme">
         <v-icon v-if="this.$vuetify.theme.dark">mdi-brightness-7</v-icon>
         <v-icon v-else>mdi-brightness-4</v-icon>
-      </v-btn>
-      <v-btn icon @click="$router.push('/settings')">
-        <v-icon>mdi-dots-vertical</v-icon>
       </v-btn>
     </v-app-bar>
 
@@ -118,7 +115,7 @@
         </v-container>
       </v-list>
     </v-bottom-sheet>
-    <app-bottom-nav />
+    <app-bottom-nav :nav-items="navItems" />
     <app-snackbar />
   </v-app>
 </template>
@@ -146,11 +143,16 @@ export default {
         startDate: new Date().toISOString().substring(0, 10)
       },
       requiredRules: [(v) => !!v || 'Name is required'],
-      items: [
+      navItems: [
         {
           icon: 'mdi-target',
           title: 'My Goals',
           to: '/'
+        },
+        {
+          icon: 'mdi-cog-outline',
+          title: 'Settings',
+          to: '/settings'
         },
         {
           icon: 'mdi-information-outline',
