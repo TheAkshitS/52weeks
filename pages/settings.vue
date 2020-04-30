@@ -29,7 +29,7 @@
         <v-btn
           v-for="currency in currencies"
           :key="currency.name"
-          :value="currency.name"
+          :value="currency"
         >
           <v-icon>{{ currency.icon }}</v-icon>
         </v-btn>
