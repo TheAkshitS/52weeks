@@ -162,10 +162,6 @@ export default {
     }
   },
 
-  created() {
-    ScreenOrientation.lock('portrait')
-  },
-
   beforeMount() {
     // TODO: Refactor this
     localStorage.getItem('darkMode') === 'true'
