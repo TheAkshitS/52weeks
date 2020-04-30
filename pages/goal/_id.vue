@@ -132,7 +132,7 @@
             <v-spacer />
             <v-btn
               class="mx-3"
-              color="primary"
+              :color="selectedAction === 'edit' ? 'primary' : 'error'"
               rounded
               @click="goalOptionSubmit"
               >{{ selectedAction === 'edit' ? 'Ok' : 'Delete' }}</v-btn
