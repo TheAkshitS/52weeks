@@ -1,23 +1,20 @@
 <template>
-  <div>
-    <v-container>
-      <h2 class="title mb-1">52 weeks money challenge</h2>
-      <p class="body-1">
-        The idea is simple: You start by socking away just $1 in the first week
-        of the year, and then gradually increase your savings by a dollar a week
-        throughout the year. So you save $2 in Week 2, then $3 in Week 3, and so
-        on, until you’re stashing away upwards of $50 a week next December. By
-        the end of the year, if you complete the challenge, you’ll have saved
-        $1,378.
-      </p>
-      <img
-        class="test ma-5"
-        src="@/assets/images/savings.svg"
-        loading="lazy"
-        alt="Wallet image"
-        width="50%"
-      />
-    </v-container>
+  <v-container class="pa-5">
+    <h2 class="title mb-1">52 weeks money challenge</h2>
+    <p class="body-1">
+      The idea is simple: You start by socking away just $1 in the first week of
+      the year, and then gradually increase your savings by a dollar a week
+      throughout the year. So you save $2 in Week 2, then $3 in Week 3, and so
+      on, until you’re stashing away upwards of $50 a week next December. By the
+      end of the year, if you complete the challenge, you’ll have saved $1,378.
+    </p>
+    <img
+      class="test ma-5"
+      src="@/assets/images/savings.svg"
+      loading="lazy"
+      alt="Wallet image"
+      width="50%"
+    />
     <v-footer absolute color="transparent">
       <v-col class="text-center pa-0 overline">
         <div>
@@ -26,7 +23,7 @@
         </div>
       </v-col>
     </v-footer>
-  </div>
+  </v-container>
 </template>
 
 <script>
