@@ -33,10 +33,7 @@
           >{{ item.title }}</v-btn
         >
       </div>
-      <v-btn icon @click="changeTheme">
-        <v-icon v-if="this.$vuetify.theme.dark">mdi-brightness-7</v-icon>
-        <v-icon v-else>mdi-brightness-4</v-icon>
-      </v-btn>
+      <v-btn icon to="/settings"><v-icon>mdi-cog-outline</v-icon></v-btn>
     </v-app-bar>
 
     <!-- MAIN CONTENT -->
@@ -104,7 +101,7 @@
               <v-spacer />
               <v-btn
                 class="mx-3"
-                color="primary"
+                color="success"
                 rounded
                 type="submit"
                 :disabled="disabledCreateGoal"
@@ -148,11 +145,6 @@ export default {
           icon: 'mdi-target',
           title: 'My Goals',
           to: '/'
-        },
-        {
-          icon: 'mdi-cog-outline',
-          title: 'Settings',
-          to: '/settings'
         },
         {
           icon: 'mdi-information-outline',
@@ -201,19 +193,6 @@ export default {
         name: '',
         amount: '',
         startDate: new Date().toISOString().substring(0, 10)
-      }
-    },
-
-    changeTheme() {
-      const metaThemeColor = document.querySelector('meta[name=theme-color]')
-
-      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
-      if (localStorage)
-        localStorage.setItem('darkMode', this.$vuetify.theme.dark)
-      if (this.$vuetify.theme.dark) {
-        metaThemeColor.setAttribute('content', '#212121')
-      } else {
-        metaThemeColor.setAttribute('content', '#0277bd')
       }
     }
   }
