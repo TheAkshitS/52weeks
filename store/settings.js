@@ -1,11 +1,11 @@
 export const state = () => ({
   currencies: [
-    { name: 'inr', icon: 'mdi-currency-inr' },
-    { name: 'usd', icon: 'mdi-currency-usd' },
-    { name: 'eur', icon: 'mdi-currency-eur' },
-    { name: 'gbp', icon: 'mdi-currency-gbp' }
+    { name: 'inr', icon: 'mdi-currency-inr', symbol: '₹' },
+    { name: 'usd', icon: 'mdi-currency-usd', symbol: '$' },
+    { name: 'eur', icon: 'mdi-currency-eur', symbol: '€' },
+    { name: 'gbp', icon: 'mdi-currency-gbp', symbol: '£' }
   ],
-  selectedCurrency: 'inr'
+  selectedCurrency: { name: 'inr', icon: 'mdi-currency-inr', symbol: '₹' }
 })
 
 export const mutations = {
