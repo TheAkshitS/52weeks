@@ -14,11 +14,7 @@
         rounded
         @change="changeTheme"
       >
-        <v-btn
-          v-for="theme in themeIcons"
-          :key="theme.name"
-          :value="theme.name"
-        >
+        <v-btn v-for="theme in themes" :key="theme.name" :value="theme.name">
           <v-icon>{{ theme.icon }}</v-icon>
         </v-btn>
       </v-btn-toggle>
@@ -31,7 +27,7 @@
 
       <v-btn-toggle v-model="selectedCurrency" dense mandatory rounded>
         <v-btn
-          v-for="currency in currencyIcons"
+          v-for="currency in currencies"
           :key="currency.name"
           :value="currency.name"
         >
@@ -46,18 +42,27 @@
 export default {
   data() {
     return {
-      currencyIcons: [
-        { name: 'inr', icon: 'mdi-currency-inr' },
-        { name: 'usd', icon: 'mdi-currency-usd' },
-        { name: 'eur', icon: 'mdi-currency-eur' },
-        { name: 'gbp', icon: 'mdi-currency-gbp' }
-      ],
-      themeIcons: [
+      themes: [
         { name: 'light', icon: 'mdi-brightness-7' },
         { name: 'dark', icon: 'mdi-brightness-4' }
       ],
-      selectedTheme: '',
-      selectedCurrency: 0
+      selectedTheme: ''
+    }
+  },
+
+  computed: {
+    currencies() {
+      return this.$store.state.settings.currencies
+    },
+
+    selectedCurrency: {
+      get() {
+        return this.$store.state.settings.selectedCurrency
+      },
+
+      set(value) {
+        this.$store.commit('settings/SET_CURRENCY', value)
+      }
     }
   },
 
