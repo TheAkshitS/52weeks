@@ -1,6 +1,6 @@
 <template>
   <v-container class="pa-5">
-    <h2 class="subtitle-1">Preferences</h2>
+    <h2 class="title">Preferences</h2>
 
     <v-col>
       <h3 class="subtitle-2 my-3">
