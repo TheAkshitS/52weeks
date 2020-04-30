@@ -133,6 +133,7 @@
             <v-btn
               class="mx-3"
               :color="selectedAction === 'edit' ? 'primary' : 'error'"
+              :disabled="selectedAction === 'edit' && goal.name === newGoalName"
               rounded
               @click="goalOptionSubmit"
               >{{ selectedAction === 'edit' ? 'Ok' : 'Delete' }}</v-btn
