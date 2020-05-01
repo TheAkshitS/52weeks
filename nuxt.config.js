@@ -33,7 +33,10 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: '~/plugins/localStorage.js', ssr: false }],
+  plugins: [
+    { src: '~/plugins/localStorage.js', ssr: false },
+    '@/plugins/currency.js'
+  ],
   /*
    ** Nuxt.js dev-modules
    */
