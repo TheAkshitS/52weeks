@@ -32,11 +32,19 @@
           </v-menu>
         </v-col>
       </v-row>
-      <v-row class="d-flex flex-no-wrap justify-space-between">
-        <div class="text-right">
-          <v-card-title class="headline">title</v-card-title>
+      <v-row class="d-flex flex-no-wrap justify-space-between align-center">
+        <div>
+          <v-card-title class="title"
+            >{{ $store.getters['goal/goalAmount'](goal.id) | currency }}
+            /
+            {{
+              $store.getters['goal/goalAmount'](goal.id) | currency
+            }}</v-card-title
+          >
 
-          <v-card-subtitle>Sub Title</v-card-subtitle>
+          <v-card-subtitle
+            >{{ remainingWeeks }} weeks remaining</v-card-subtitle
+          >
         </div>
         <v-avatar class="" size="125" tile>
           <v-progress-circular
@@ -207,6 +215,16 @@ export default {
           (goal) => goal.id === this.$route.params.id
         )
       }
+    },
+
+    remainingWeeks() {
+      const totalWeekFromStartDate = this.$dayjs(this.goal.startDate).add(
+        52,
+        'week'
+      )
+      const passedWeeksFromNow = this.$dayjs(this.goal.startDate).add(1, 'week')
+
+      return totalWeekFromStartDate.diff(passedWeeksFromNow, 'week')
     }
   },
 
