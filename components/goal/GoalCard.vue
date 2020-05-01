@@ -14,14 +14,14 @@
           ><v-icon left small class="ma">mdi-calendar-range</v-icon
           >{{
             $dayjs(goal.startDate)
-              .add(1, 'year')
+              .add(52, 'week')
               .format('DD/MM/YY')
           }}</v-card-subtitle
         >
         <v-card-subtitle
           ><v-icon left class="ma-0">mdi-cash</v-icon>
           {{
-            totalBalanceAtTheEnd.toLocaleString() | currency
+            $store.getters['goal/goalAmount'](goal.id) | currency
           }}</v-card-subtitle
         >
       </div>
@@ -55,19 +55,6 @@ export default {
   data() {
     return {
       value: 30
-    }
-  },
-
-  computed: {
-    totalBalanceAtTheEnd() {
-      const totalWeeks = 52
-      let accountBalance = 0
-
-      for (let week = 1; week <= totalWeeks; week++) {
-        accountBalance = accountBalance + this.goal.amount * week
-      }
-
-      return accountBalance
     }
   }
 }
