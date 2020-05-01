@@ -20,7 +20,9 @@
         >
         <v-card-subtitle
           ><v-icon left class="ma-0">mdi-cash</v-icon>
-          {{ totalBalanceAtTheEnd.toLocaleString() }}</v-card-subtitle
+          {{
+            totalBalanceAtTheEnd.toLocaleString() | currency
+          }}</v-card-subtitle
         >
       </div>
 

@@ -87,7 +87,9 @@
               <tbody>
                 <tr v-for="week in 52" :key="week" class="text-center">
                   <td class="text-center">{{ week }}</td>
-                  <td class="text-center">${{ goal.amount * week }}</td>
+                  <td class="text-center">
+                    {{ (goal.amount * week) | currency }}
+                  </td>
                   <td class="text-center">
                     {{
                       $dayjs(goal.startDate)
