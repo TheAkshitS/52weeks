@@ -1,39 +1,38 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col
-        ><h2 class="heading">🎯 {{ goal.name }}</h2></v-col
-      >
-      <v-col class="text-right">
-        <v-btn icon @click="goalObjectiveDialog = true">
-          <v-icon>mdi-finance</v-icon>
-        </v-btn>
-        <v-menu bottom>
-          <template v-slot:activator="{ on }">
-            <v-btn icon v-on="on">
-              <v-icon>mdi-dots-vertical</v-icon>
-            </v-btn>
-          </template>
+    <v-card color="primary" class="ma-2 px-3" dark>
+      <v-row>
+        <v-col
+          ><h2 class="heading">🎯 {{ goal.name }}</h2></v-col
+        >
+        <v-col class="text-right">
+          <v-btn icon @click="goalObjectiveDialog = true">
+            <v-icon>mdi-finance</v-icon>
+          </v-btn>
+          <v-menu bottom>
+            <template v-slot:activator="{ on }">
+              <v-btn icon v-on="on">
+                <v-icon>mdi-dots-vertical</v-icon>
+              </v-btn>
+            </template>
 
-          <v-list>
-            <v-list-item
-              v-for="item in optionItems"
-              :key="item.title"
-              class="text-capitalize"
-              @click="optionAction(item.title)"
-            >
-              <v-list-item-title
-                ><v-icon left small>{{ item.icon }}</v-icon>
-                {{ item.title }}</v-list-item-title
+            <v-list>
+              <v-list-item
+                v-for="item in optionItems"
+                :key="item.title"
+                class="text-capitalize"
+                @click="optionAction(item.title)"
               >
-            </v-list-item>
-          </v-list>
-        </v-menu>
-      </v-col>
-    </v-row>
-
-    <v-card color="primary" dark>
-      <div class="d-flex flex-no-wrap justify-space-between">
+                <v-list-item-title
+                  ><v-icon left small>{{ item.icon }}</v-icon>
+                  {{ item.title }}</v-list-item-title
+                >
+              </v-list-item>
+            </v-list>
+          </v-menu>
+        </v-col>
+      </v-row>
+      <v-row class="d-flex flex-no-wrap justify-space-between">
         <div class="text-right">
           <v-card-title class="headline">title</v-card-title>
 
@@ -42,17 +41,48 @@
         <v-avatar class="" size="125" tile>
           <v-progress-circular
             rotate="360"
-            size="70"
-            width="7"
+            size="75"
+            width="8"
             :value="value"
-            class="overline"
             color="white"
+            class="subtitle-2"
           >
             {{ value }}%
           </v-progress-circular>
         </v-avatar>
-      </div>
+      </v-row>
     </v-card>
+
+    <v-simple-table class="mx-2 mt-5">
+      <template v-slot:default>
+        <thead>
+          <tr>
+            <th>Deposited</th>
+            <th>Week</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="week in 52" :key="week">
+            <td><v-checkbox /></td>
+
+            <td>
+              Week {{ week }}<br /><v-icon left small class="ma"
+                >mdi-calendar-range</v-icon
+              >{{
+                $dayjs(goal.startDate)
+                  .add(week, 'week')
+                  .format('DD/MM')
+              }}
+            </td>
+            <td>
+              <v-icon left class="ma-0">mdi-cash</v-icon>
+              {{ (goal.amount + (week - 1)) | currency }}
+            </td>
+          </tr>
+        </tbody>
+      </template>
+    </v-simple-table>
 
     <v-dialog
       v-model="goalObjectiveDialog"
