@@ -85,7 +85,7 @@
             </td>
             <td>
               <v-icon left class="ma-0">mdi-cash</v-icon>
-              {{ (goal.amount + (week - 1)) | currency }}
+              {{ (goal.amount * week) | currency }}
             </td>
           </tr>
         </tbody>
