@@ -1,22 +1,28 @@
 export const state = () => ({ goals: [] })
 
 export const getters = {
-  goals: (state) => state.goals,
-  goalAmount: (state) => (id) => {
-    const goal = state.goals.find((todo) => todo.id === id)
-    const totalWeeks = 52
-    let accountBalance = 0
-
-    for (let week = 1; week <= totalWeeks; week++) {
-      accountBalance = accountBalance + goal.amount * week
-    }
-
-    return accountBalance.toLocaleString()
-  }
+  goals: (state) => state.goals
 }
 
 export const mutations = {
-  CREATE_GOAL(state, goal) {
+  PREPARE_GOAL(state, goal) {
+    const totalWeeks = 52
+    const weeklyGoals = []
+    let finalGoalAmount = 0
+
+    for (let week = 1; week <= totalWeeks; week++) {
+      finalGoalAmount = finalGoalAmount + goal.amount * week
+
+      weeklyGoals.push({
+        week,
+        amountToBeDeposited: goal.amount * week,
+        status: false
+      })
+    }
+
+    goal.finalGoalAmount = finalGoalAmount
+    goal.weeklyGoals = weeklyGoals
+
     state.goals.push(goal)
   },
 
@@ -29,5 +35,11 @@ export const mutations = {
 
   DELETE_GOAL(state, id) {
     state.goals = state.goals.filter((goal) => goal.id !== id)
+  }
+}
+
+export const actions = {
+  createGoal({ commit }, goal) {
+    commit('PREPARE_GOAL', goal)
   }
 }
