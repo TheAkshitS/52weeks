@@ -70,7 +70,7 @@
                   append-icon="mdi-cash"
                 />
                 <v-menu
-                  v-model="menu2"
+                  v-model="dateMenu"
                   :close-on-content-click="false"
                   :nudge-right="40"
                   transition="scale-transition"
@@ -91,8 +91,7 @@
                   </template>
                   <v-date-picker
                     v-model="goal.startDate"
-                    :min="new Date().toISOString()"
-                    @input="menu2 = false"
+                    @input="dateMenu = false"
                   ></v-date-picker>
                 </v-menu>
               </v-col>
@@ -130,7 +129,7 @@ export default {
       activeBtn: 1,
       drawer: false,
       hidden: true,
-      menu2: false,
+      dateMenu: false,
       goal: {
         id: Math.random()
           .toString(16)
@@ -175,7 +174,7 @@ export default {
 
   methods: {
     async createGoal() {
-      await this.$store.commit('goal/CREATE_GOAL', this.goal)
+      await this.$store.dispatch('goal/createGoal', this.goal)
       this.sheet = false
       this.$store.dispatch('ui/setSnackbar', { text: 'Goal created 🎉' })
     },

@@ -21,7 +21,7 @@
         <v-card-subtitle
           ><v-icon left class="ma-0">mdi-cash</v-icon>
           {{
-            $store.getters['goal/goalAmount'](goal.id) | currency
+            goal.finalGoalAmount.toLocaleString() | currency
           }}</v-card-subtitle
         >
       </div>
