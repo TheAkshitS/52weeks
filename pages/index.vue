@@ -1,20 +1,22 @@
 <template>
   <v-container>
     <v-row v-if="goals.length" class="mt-2">
-      <GoalCard v-for="goal in goals" :key="goal.id" :goal="goal" />
+      <v-col>
+        <GoalCard v-for="goal in goals" :key="goal.id" :goal="goal" />
+      </v-col>
     </v-row>
     <v-row v-else>
-      <div class="ma-5 grey--text">
-        You haven't added any goals yet.
-      </div>
-      <img
-        style="z-index: 0"
-        src="@/assets/images/wallet.svg"
-        loading="lazy"
-        alt="Wallet image"
-        width="50%"
-        class="wallet-image ma-5"
-      />
+      <v-col class="ma-5 grey--text">
+        <p>You haven't added any goals yet.</p>
+        <img
+          style="z-index: 0"
+          src="@/assets/images/wallet.svg"
+          loading="lazy"
+          alt="Wallet image"
+          width="50%"
+          class="wallet-image ma-5"
+        />
+      </v-col>
     </v-row>
   </v-container>
 </template>

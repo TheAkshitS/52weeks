@@ -1,40 +1,46 @@
 <template>
   <v-container class="pa-5">
-    <h2 class="title">Preferences</h2>
+    <v-row class="ml-1">
+      <h2 class="title">Preferences</h2>
+    </v-row>
 
-    <v-col>
-      <h3 class="subtitle-2 my-3">
-        <v-icon left small>mdi-theme-light-dark</v-icon>Theme
-      </h3>
+    <v-row>
+      <v-col>
+        <h3 class="subtitle-2 my-3">
+          <v-icon left small>mdi-theme-light-dark</v-icon>Theme
+        </h3>
 
-      <v-btn-toggle
-        v-model="selectedTheme"
-        dense
-        mandatory
-        rounded
-        @change="changeTheme"
-      >
-        <v-btn v-for="theme in themes" :key="theme.name" :value="theme.name">
-          <v-icon>{{ theme.icon }}</v-icon>
-        </v-btn>
-      </v-btn-toggle>
-    </v-col>
-
-    <v-col>
-      <h3 class="subtitle-2 my-3">
-        <v-icon left small>mdi-cash</v-icon>Currency
-      </h3>
-
-      <v-btn-toggle v-model="selectedCurrency" dense mandatory rounded>
-        <v-btn
-          v-for="currency in currencies"
-          :key="currency.name"
-          :value="currency"
+        <v-btn-toggle
+          v-model="selectedTheme"
+          dense
+          mandatory
+          rounded
+          @change="changeTheme"
         >
-          <v-icon>{{ currency.icon }}</v-icon>
-        </v-btn>
-      </v-btn-toggle>
-    </v-col>
+          <v-btn v-for="theme in themes" :key="theme.name" :value="theme.name">
+            <v-icon>{{ theme.icon }}</v-icon>
+          </v-btn>
+        </v-btn-toggle>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col>
+        <h3 class="subtitle-2 my-3">
+          <v-icon left small>mdi-cash</v-icon>Currency
+        </h3>
+
+        <v-btn-toggle v-model="selectedCurrency" dense mandatory rounded>
+          <v-btn
+            v-for="currency in currencies"
+            :key="currency.name"
+            :value="currency"
+          >
+            <v-icon>{{ currency.icon }}</v-icon>
+          </v-btn>
+        </v-btn-toggle>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
