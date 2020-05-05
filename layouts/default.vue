@@ -55,7 +55,7 @@
                   placeholder="Name"
                   outlined
                   required
-                  autocomplete="false"
+                  autocomplete="off"
                   append-icon="mdi-form-textbox"
                 />
                 <v-text-field
@@ -66,7 +66,7 @@
                   pattern="[0-9]*"
                   outlined
                   required
-                  autocomplete="false"
+                  autocomplete="off"
                   append-icon="mdi-cash"
                 />
                 <v-menu
