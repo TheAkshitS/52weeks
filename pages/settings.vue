@@ -21,12 +21,8 @@
             <v-icon>{{ theme.icon }}</v-icon>
           </v-btn>
         </v-btn-toggle>
-      </v-col>
-    </v-row>
 
-    <v-row>
-      <v-col>
-        <h3 class="subtitle-2 my-3">
+        <h3 class="subtitle-2 mt-5 my-3">
           <v-icon left small>mdi-cash</v-icon>Currency
         </h3>
 
