@@ -1,9 +1,5 @@
 export const state = () => ({ goals: [] })
 
-export const getters = {
-  goals: (state) => state.goals
-}
-
 export const mutations = {
   PREPARE_GOAL(state, goal) {
     const totalWeeks = 52
@@ -35,15 +31,6 @@ export const mutations = {
 
   DELETE_GOAL(state, id) {
     state.goals = state.goals.filter((goal) => goal.id !== id)
-  },
-
-  CHANGE_WEEKLY_GOAL_STATUS(state, goal) {
-    const goalId = (element) => element.id === goal.id
-    const goalIndex = state.goals.findIndex(goalId)
-
-    state.goals[goalIndex].weeklyGoals[goal.week - 1].status = !state.goals[
-      goalIndex
-    ].weeklyGoals[goal.week - 1].status
   }
 }
 
