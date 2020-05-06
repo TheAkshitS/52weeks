@@ -2,10 +2,17 @@
   <v-app>
     <!-- APP BAR -->
     <v-app-bar fixed app flat>
-      <v-toolbar-title
-        ><n-link to="/" style="text-decoration: none;"
+      <v-toolbar-title>
+        <v-icon left @click="changeRoute">
+          {{
+            $route.name === 'index'
+              ? 'mdi-cash-multiple'
+              : 'mdi-keyboard-backspace'
+          }}
+        </v-icon>
+        <n-link to="/" style="text-decoration: none;"
           >52 Weeks
-          <span class="font-weight-medium">Money Challenge 💸</span></n-link
+          <span class="font-weight-medium">Money Challenge</span></n-link
         ></v-toolbar-title
       >
       <v-spacer />
@@ -111,7 +118,9 @@
         </v-container>
       </v-list>
     </v-bottom-sheet>
+
     <app-bottom-nav :nav-items="navItems" />
+
     <app-snackbar />
   </v-app>
 </template>
@@ -193,6 +202,11 @@ export default {
         amount: '',
         startDate: new Date().toISOString().substring(0, 10)
       }
+    },
+
+    changeRoute() {
+      if (this.$route.name === 'index') this.$router.push('/')
+      this.$router.go(-1)
     }
   }
 }
