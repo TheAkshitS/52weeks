@@ -35,7 +35,7 @@ export default {
 
   computed: {
     goals() {
-      return this.$store.getters['goal/goals']
+      return this.$store.state.goal.goals
     }
   },
 
