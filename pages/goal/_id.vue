@@ -38,7 +38,7 @@
           <v-row class="d-flex flex-no-wrap justify-space-between align-center">
             <div>
               <v-card-title class="title"
-                >{{ goal.finalGoalAmount.toLocaleString() | currency }}
+                >{{ totalAmountDeposited | currency }}
                 /
                 {{
                   goal.finalGoalAmount.toLocaleString() | currency
@@ -54,11 +54,11 @@
                 rotate="360"
                 size="75"
                 width="8"
-                :value="value"
+                :value="totalGoalProgress"
                 color="white"
                 class="subtitle-2"
               >
-                {{ value }}%
+                {{ totalGoalProgress }}%
               </v-progress-circular>
             </v-avatar>
           </v-row>
@@ -80,7 +80,12 @@
             <tbody>
               <tr v-for="weeklyGoal in weeklyGoals" :key="weeklyGoal.week">
                 <td>
-                  <v-checkbox v-model="weeklyGoal.status" />
+                  <v-checkbox
+                    v-model="weeklyGoal.status"
+                    @input="
+                      updateGoalStatus({ id: goal.id, week: weeklyGoal.week })
+                    "
+                  />
                 </td>
 
                 <td>
@@ -224,7 +229,8 @@ export default {
       ],
       tableTitles: ['Week', 'Save', 'Date', 'Deposited', 'Total Savings'],
       goalObjectiveDialog: false,
-      value: 30
+      totalGoalProgress: 0,
+      totalAmountDeposited: 0
     }
   },
 
@@ -256,6 +262,27 @@ export default {
     }
   },
 
+  watch: {
+    weeklyGoals: {
+      immediate: true,
+      deep: true,
+
+      handler() {
+        let count = 0
+        let amountDeposited = 0
+
+        this.weeklyGoals.forEach((goal) => {
+          if (goal.status) {
+            count++
+            amountDeposited = amountDeposited + goal.amountToBeDeposited
+          }
+        })
+        this.totalAmountDeposited = amountDeposited
+        this.totalGoalProgress = Math.floor((count / 52) * 100)
+      }
+    }
+  },
+
   methods: {
     optionAction(optionTitle) {
       this.selectedAction = optionTitle
@@ -277,6 +304,10 @@ export default {
         this.$store.dispatch('ui/setSnackbar', { text: 'Goal deleted ⚰' })
         this.$router.push('/')
       }
+    },
+
+    updateGoalStatus(goal) {
+      this.$store.commit('goal/CHANGE_WEEKLY_GOAL_STATUS', goal)
     }
   },
 
