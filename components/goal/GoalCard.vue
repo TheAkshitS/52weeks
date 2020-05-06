@@ -4,7 +4,7 @@
     color="primary"
     dark
     width="320"
-    :to="`/goal/${goal.id}`"
+    v-on="$listeners"
   >
     <div class="d-flex flex-no-wrap justify-space-between">
       <div>

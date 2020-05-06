@@ -1,5 +1,5 @@
 // TODO: Avoid strict
-export const strict = false
+// export const strict = true
 
 export const state = () => ({})
 export const getters = {}

@@ -82,9 +82,7 @@
                 <td>
                   <v-checkbox
                     v-model="weeklyGoal.status"
-                    @input="
-                      updateGoalStatus({ id: goal.id, week: weeklyGoal.week })
-                    "
+                    @change="($event) => updateGoalStatus(weeklyGoal, $event)"
                   />
                 </td>
 
@@ -236,9 +234,10 @@ export default {
 
   computed: {
     goal() {
-      return this.$store.state.goal.goals.find(
-        (goal) => goal.id === this.$route.params.id
-      )
+      return this.$store.state.goal.goal
+      // return this.$store.state.goal.goals.find(
+      //   (goal) => goal.id === this.$route.params.id
+      // )
     },
 
     weeklyGoals: {
@@ -248,6 +247,7 @@ export default {
 
       set() {
         this.goal.weeklyGoals = this.weeklyGoals
+        // this.updateGoalStatus({ id: goal.id, week: weeklyGoal.week })
       }
     },
 
@@ -306,8 +306,8 @@ export default {
       }
     },
 
-    updateGoalStatus(goal) {
-      this.$store.commit('goal/CHANGE_WEEKLY_GOAL_STATUS', goal)
+    updateGoalStatus(weeklyGoal, status) {
+      // this.$store.commit('goal/CHANGE_WEEKLY_GOAL_STATUS', goal)
     }
   },
 

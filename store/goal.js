@@ -1,4 +1,4 @@
-export const state = () => ({ goals: [] })
+export const state = () => ({ goals: [], goal: {} })
 
 export const mutations = {
   PREPARE_GOAL(state, goal) {
@@ -22,10 +22,13 @@ export const mutations = {
     state.goals.push(goal)
   },
 
+  SELECT_GOAL(state, goal) {
+    state.goal = goal
+  },
+
   UPDATE_GOAL(state, goal) {
     const goalId = (element) => element.id === goal.id
     const goalIndex = state.goals.findIndex(goalId)
-
     state.goals[goalIndex].name = goal.name
   },
 
