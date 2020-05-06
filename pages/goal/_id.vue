@@ -1,96 +1,107 @@
 <template>
   <v-container>
-    <v-card color="primary" class="ma-2 px-3" dark>
-      <v-row>
-        <v-col
-          ><h2 class="heading">🎯 {{ goal.name }}</h2></v-col
-        >
-        <v-col class="text-right">
-          <v-btn icon @click="goalObjectiveDialog = true">
-            <v-icon>mdi-finance</v-icon>
-          </v-btn>
-          <v-menu bottom>
-            <template v-slot:activator="{ on }">
-              <v-btn icon v-on="on">
-                <v-icon>mdi-dots-vertical</v-icon>
+    <v-row>
+      <v-col>
+        <v-card color="primary" class="mx-2 px-3" dark>
+          <v-row>
+            <v-col
+              ><h2 class="heading">🎯 {{ goal.name }}</h2></v-col
+            >
+            <v-col class="text-right">
+              <v-btn icon @click="goalObjectiveDialog = true">
+                <v-icon>mdi-finance</v-icon>
               </v-btn>
-            </template>
+              <v-menu bottom>
+                <template v-slot:activator="{ on }">
+                  <v-btn icon v-on="on">
+                    <v-icon>mdi-dots-vertical</v-icon>
+                  </v-btn>
+                </template>
 
-            <v-list>
-              <v-list-item
-                v-for="item in optionItems"
-                :key="item.title"
-                class="text-capitalize"
-                @click="optionAction(item.title)"
+                <v-list>
+                  <v-list-item
+                    v-for="item in optionItems"
+                    :key="item.title"
+                    class="text-capitalize"
+                    @click="optionAction(item.title)"
+                  >
+                    <v-list-item-title
+                      ><v-icon left small>{{ item.icon }}</v-icon>
+                      {{ item.title }}</v-list-item-title
+                    >
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+            </v-col>
+          </v-row>
+
+          <v-row class="d-flex flex-no-wrap justify-space-between align-center">
+            <div>
+              <v-card-title class="title"
+                >{{ goal.finalGoalAmount.toLocaleString() | currency }}
+                /
+                {{
+                  goal.finalGoalAmount.toLocaleString() | currency
+                }}</v-card-title
               >
-                <v-list-item-title
-                  ><v-icon left small>{{ item.icon }}</v-icon>
-                  {{ item.title }}</v-list-item-title
-                >
-              </v-list-item>
-            </v-list>
-          </v-menu>
-        </v-col>
-      </v-row>
-      <v-row class="d-flex flex-no-wrap justify-space-between align-center">
-        <div>
-          <v-card-title class="title"
-            >{{ $store.getters['goal/goalAmount'](goal.id) | currency }}
-            /
-            {{
-              $store.getters['goal/goalAmount'](goal.id) | currency
-            }}</v-card-title
-          >
 
-          <v-card-subtitle
-            >{{ remainingWeeks }} weeks remaining</v-card-subtitle
-          >
-        </div>
-        <v-avatar class="" size="125" tile>
-          <v-progress-circular
-            rotate="360"
-            size="75"
-            width="8"
-            :value="value"
-            color="white"
-            class="subtitle-2"
-          >
-            {{ value }}%
-          </v-progress-circular>
-        </v-avatar>
-      </v-row>
-    </v-card>
+              <v-card-subtitle
+                >{{ remainingWeeks }} weeks remaining</v-card-subtitle
+              >
+            </div>
+            <v-avatar class="" size="125" tile>
+              <v-progress-circular
+                rotate="360"
+                size="75"
+                width="8"
+                :value="value"
+                color="white"
+                class="subtitle-2"
+              >
+                {{ value }}%
+              </v-progress-circular>
+            </v-avatar>
+          </v-row>
+        </v-card>
+      </v-col>
+    </v-row>
 
-    <v-simple-table class="mx-2 mt-5">
-      <template v-slot:default>
-        <thead>
-          <tr>
-            <th>Deposited</th>
-            <th>Week</th>
-            <th>Amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="week in 52" :key="week">
-            <td><v-checkbox /></td>
+    <v-row>
+      <v-col>
+        <v-simple-table class="mx-2">
+          <template v-slot:default>
+            <thead>
+              <tr>
+                <th>Deposited</th>
+                <th>Week</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="weeklyGoal in weeklyGoals" :key="weeklyGoal.week">
+                <td>
+                  <v-checkbox v-model="weeklyGoal.status" />
+                </td>
 
-            <td>
-              Week {{ week }}<br /><v-icon left small class="ma"
-                >mdi-calendar-range</v-icon
-              >{{
-                $dayjs(goal.startDate)
-                  .add(week, 'week')
-                  .format('DD/MM')
-              }}
-            </td>
-            <td>
-              <v-icon left class="ma-0">mdi-cash</v-icon>
-              {{ (goal.amount * week) | currency }}
-            </td>
-          </tr>
-        </tbody>
-      </template>
-    </v-simple-table>
+                <td>
+                  Week {{ weeklyGoal.week }}<br /><v-icon left small
+                    >mdi-calendar-range</v-icon
+                  >{{
+                    $dayjs(goal.startDate)
+                      .add(weeklyGoal.week, 'week')
+                      .format('DD/MM')
+                  }}
+                </td>
+                <td>
+                  <v-icon left class="ma-0">mdi-cash</v-icon>
+                  {{ weeklyGoal.amountToBeDeposited | currency }}
+                </td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+      </v-col>
+    </v-row>
 
     <v-dialog
       v-model="goalObjectiveDialog"
@@ -123,19 +134,28 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="week in 52" :key="week" class="text-center">
-                  <td class="text-center">{{ week }}</td>
+                <tr
+                  v-for="weeklyGoal in weeklyGoals"
+                  :key="weeklyGoal.week"
+                  class="text-center"
+                >
+                  <td class="text-center">{{ weeklyGoal.week }}</td>
                   <td class="text-center">
-                    {{ (goal.amount * week) | currency }}
+                    {{ weeklyGoal.amountToBeDeposited | currency }}
                   </td>
                   <td class="text-center">
                     {{
                       $dayjs(goal.startDate)
-                        .add(week, 'week')
-                        .format('DD/MM/YY')
+                        .add(weeklyGoal.week, 'week')
+                        .format('DD/MM')
                     }}
                   </td>
-                  <td class="text-center">No</td>
+                  <td class="text-center">
+                    {{ weeklyGoal.status ? 'Yes' : 'No' }}
+                  </td>
+                  <td class="text-center">
+                    {{ '$1,234' }}
+                  </td>
                 </tr>
               </tbody>
             </template>
@@ -202,7 +222,7 @@ export default {
           title: 'delete'
         }
       ],
-      tableTitles: ['Week', 'Save', 'Date', 'Deposited'],
+      tableTitles: ['Week', 'Save', 'Date', 'Deposited', 'Total Savings'],
       goalObjectiveDialog: false,
       value: 30
     }
@@ -210,10 +230,18 @@ export default {
 
   computed: {
     goal() {
-      return {
-        ...this.$store.getters['goal/goals'].find(
-          (goal) => goal.id === this.$route.params.id
-        )
+      return this.$store.state.goal.goals.find(
+        (goal) => goal.id === this.$route.params.id
+      )
+    },
+
+    weeklyGoals: {
+      get() {
+        return this.goal.weeklyGoals
+      },
+
+      set() {
+        this.goal.weeklyGoals = this.weeklyGoals
       }
     },
 
