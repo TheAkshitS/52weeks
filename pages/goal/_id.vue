@@ -284,18 +284,18 @@ export default {
     },
 
     calculateValues() {
-      let count = 0
+      let weeklyGoalCompleted = 0
       let amountDeposited = 0
 
       this.weeklyGoals.forEach((goal) => {
         if (goal.status) {
-          count++
+          weeklyGoalCompleted++
           amountDeposited = amountDeposited + goal.amountToBeDeposited
         }
       })
       this.totalAmountDeposited = amountDeposited
-      this.totalGoalProgress = Math.floor((count / 52) * 100)
-      this.remainingWeeks = 52 - count
+      this.totalGoalProgress = Math.floor((weeklyGoalCompleted / 52) * 100)
+      this.remainingWeeks = 52 - weeklyGoalCompleted
     }
   },
 

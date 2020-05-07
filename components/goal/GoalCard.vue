@@ -36,7 +36,7 @@
       </v-avatar>
     </div>
     <v-progress-linear
-      v-model="value"
+      v-model="totalGoalProgress"
       height="5"
       color="green"
     ></v-progress-linear>
@@ -54,7 +54,23 @@ export default {
 
   data() {
     return {
-      value: 30
+      totalGoalProgress: 100
+    }
+  },
+
+  created() {
+    this.calculateValues()
+  },
+
+  methods: {
+    calculateValues() {
+      let weeklyGoalCompleted = 0
+
+      this.goal.weeklyGoals.forEach((goal) => {
+        if (goal.status) weeklyGoalCompleted++
+      })
+
+      this.totalGoalProgress = Math.floor((weeklyGoalCompleted / 52) * 100)
     }
   }
 }
