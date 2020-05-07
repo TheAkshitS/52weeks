@@ -38,7 +38,7 @@
     <v-progress-linear
       v-model="totalGoalProgress"
       height="5"
-      color="green"
+      color="amber"
     ></v-progress-linear>
   </v-card>
 </template>
