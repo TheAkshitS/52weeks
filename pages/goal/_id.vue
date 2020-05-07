@@ -82,7 +82,7 @@
                 <td>
                   <v-checkbox
                     v-model="weeklyGoal.status"
-                    @change="($event) => updateGoalStatus(weeklyGoal, $event)"
+                    @change="calculateValues"
                   />
                 </td>
 
@@ -228,16 +228,14 @@ export default {
       tableTitles: ['Week', 'Save', 'Date', 'Deposited', 'Total Savings'],
       goalObjectiveDialog: false,
       totalGoalProgress: 0,
-      totalAmountDeposited: 0
+      totalAmountDeposited: 0,
+      remainingWeeks: 52
     }
   },
 
   computed: {
     goal() {
-      return this.$store.state.goal.goal
-      // return this.$store.state.goal.goals.find(
-      //   (goal) => goal.id === this.$route.params.id
-      // )
+      return this.$store.state.goal.selectedGoal
     },
 
     weeklyGoals: {
@@ -246,19 +244,8 @@ export default {
       },
 
       set() {
-        this.goal.weeklyGoals = this.weeklyGoals
-        // this.updateGoalStatus({ id: goal.id, week: weeklyGoal.week })
+        this.$store.commit('goal/UPDATE_SELECTED_GOAL', this.weeklyGoals)
       }
-    },
-
-    remainingWeeks() {
-      const totalWeekFromStartDate = this.$dayjs(this.goal.startDate).add(
-        52,
-        'week'
-      )
-      const passedWeeksFromNow = this.$dayjs(this.goal.startDate).add(1, 'week')
-
-      return totalWeekFromStartDate.diff(passedWeeksFromNow, 'week')
     }
   },
 
@@ -268,17 +255,7 @@ export default {
       deep: true,
 
       handler() {
-        let count = 0
-        let amountDeposited = 0
-
-        this.weeklyGoals.forEach((goal) => {
-          if (goal.status) {
-            count++
-            amountDeposited = amountDeposited + goal.amountToBeDeposited
-          }
-        })
-        this.totalAmountDeposited = amountDeposited
-        this.totalGoalProgress = Math.floor((count / 52) * 100)
+        this.calculateValues()
       }
     }
   },
@@ -306,14 +283,25 @@ export default {
       }
     },
 
-    updateGoalStatus(weeklyGoal, status) {
-      // this.$store.commit('goal/CHANGE_WEEKLY_GOAL_STATUS', goal)
+    calculateValues() {
+      let count = 0
+      let amountDeposited = 0
+
+      this.weeklyGoals.forEach((goal) => {
+        if (goal.status) {
+          count++
+          amountDeposited = amountDeposited + goal.amountToBeDeposited
+        }
+      })
+      this.totalAmountDeposited = amountDeposited
+      this.totalGoalProgress = Math.floor((count / 52) * 100)
+      this.remainingWeeks = 52 - count
     }
   },
 
   head() {
     return {
-      title: `${this.goal.name}`
+      title: `${this.goal.name}` || ''
     }
   }
 }
