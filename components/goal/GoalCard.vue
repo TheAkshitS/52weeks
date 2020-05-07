@@ -31,7 +31,7 @@
           src="@/assets/images/piggy_bank.svg"
           loading="lazy"
           alt="Wallet image"
-          class="wallet-image ma-5"
+          class="wallet-image"
         />
       </v-avatar>
     </div>
