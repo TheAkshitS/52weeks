@@ -6,6 +6,7 @@
           v-for="goal in goals"
           :key="goal.id"
           :goal="goal"
+          nuxt
           @click="setGoal(goal)"
         />
       </v-col>

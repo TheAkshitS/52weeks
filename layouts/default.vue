@@ -37,6 +37,7 @@
         <v-btn
           class="ml-2 d-none d-sm-flex text-capitalize font-weight-light"
           :to="item.to"
+          nuxt
           text
           >{{ item.title }}</v-btn
         >
