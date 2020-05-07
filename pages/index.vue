@@ -34,15 +34,12 @@ export default {
     GoalCard
   },
 
-  data() {
-    return {}
-  },
-
   computed: {
     goals() {
       return this.$store.state.goal.goals
     }
   },
+
   methods: {
     setGoal(goal) {
       this.$store.commit('goal/SELECT_GOAL', goal)
