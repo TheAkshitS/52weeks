@@ -16,7 +16,6 @@
     "*.{js,vue}": "yarn lint"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/pwa": "^3.0.0-0",
     "nuxt": "^2.0.0",
     "nuxt-dayjs-module": "^1.1.2",

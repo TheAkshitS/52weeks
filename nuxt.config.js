@@ -48,12 +48,8 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/axios', '@nuxtjs/pwa', 'nuxt-dayjs-module'],
-  /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
-   */
-  axios: {},
+  modules: ['@nuxtjs/pwa', 'nuxt-dayjs-module'],
+
   pwa: {
     manifest: {
       name: '52 Weeks Money Challenge 💸',
