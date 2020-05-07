@@ -150,14 +150,11 @@
                     {{
                       $dayjs(goal.startDate)
                         .add(weeklyGoal.week, 'week')
-                        .format('DD/MM')
+                        .format('DD/MM/YY')
                     }}
                   </td>
                   <td class="text-center">
                     {{ weeklyGoal.status ? 'Yes' : 'No' }}
-                  </td>
-                  <td class="text-center">
-                    {{ '$1,234' }}
                   </td>
                 </tr>
               </tbody>
@@ -225,7 +222,7 @@ export default {
           title: 'delete'
         }
       ],
-      tableTitles: ['Week', 'Save', 'Date', 'Deposited', 'Total Savings'],
+      tableTitles: ['Week', 'Save', 'Date', 'Deposited'],
       goalObjectiveDialog: false,
       totalGoalProgress: 0,
       totalAmountDeposited: 0,
