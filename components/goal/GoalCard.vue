@@ -26,7 +26,7 @@
         >
       </div>
 
-      <v-avatar class="ma-1" size="125">
+      <v-avatar class="ma-1 pt-3 pr-2" size="125">
         <img
           src="@/assets/images/wallet.svg"
           loading="lazy"
