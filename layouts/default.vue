@@ -3,7 +3,7 @@
     <!-- APP BAR -->
     <v-app-bar fixed app flat>
       <v-toolbar-title>
-        <v-icon left color="primary" @click="changeRoute">
+        <v-icon left color="primary" name="navigation" @click="changeRoute">
           {{
             $route.name === 'index'
               ? 'mdi-cash-multiple'
@@ -26,6 +26,7 @@
             right
             absolute
             color="primary"
+            name="add goal"
             @click="openBottomSheet"
           >
             <v-icon>mdi-plus</v-icon>
@@ -40,7 +41,9 @@
           >{{ item.title }}</v-btn
         >
       </div>
-      <v-btn icon to="/settings"><v-icon>mdi-cog-outline</v-icon></v-btn>
+      <v-btn icon name="settings" to="/settings"
+        ><v-icon>mdi-cog-outline</v-icon></v-btn
+      >
     </v-app-bar>
 
     <!-- MAIN CONTENT -->
