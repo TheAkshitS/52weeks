@@ -224,3 +224,9 @@ export default {
   opacity: 0;
 }
 </style>
+
+<style>
+html {
+  overflow-y: auto;
+}
+</style>
