@@ -3,7 +3,7 @@
     <!-- APP BAR -->
     <v-app-bar fixed app flat>
       <v-toolbar-title>
-        <v-icon left @click="changeRoute">
+        <v-icon left color="primary" @click="changeRoute">
           {{
             $route.name === 'index'
               ? 'mdi-cash-multiple'
