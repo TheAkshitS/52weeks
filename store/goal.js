@@ -1,4 +1,4 @@
-export const state = () => ({ goals: [] })
+export const state = () => ({ goals: [], selectedGoal: {} })
 
 export const mutations = {
   PREPARE_GOAL(state, goal) {
@@ -22,10 +22,13 @@ export const mutations = {
     state.goals.push(goal)
   },
 
+  SELECT_GOAL(state, goal) {
+    state.selectedGoal = goal
+  },
+
   UPDATE_GOAL(state, goal) {
     const goalId = (element) => element.id === goal.id
     const goalIndex = state.goals.findIndex(goalId)
-
     state.goals[goalIndex].name = goal.name
   },
 
@@ -33,13 +36,8 @@ export const mutations = {
     state.goals = state.goals.filter((goal) => goal.id !== id)
   },
 
-  CHANGE_WEEKLY_GOAL_STATUS(state, goal) {
-    const goalId = (element) => element.id === goal.id
-    const goalIndex = state.goals.findIndex(goalId)
-
-    state.goals[goalIndex].weeklyGoals[goal.week - 1].status = !state.goals[
-      goalIndex
-    ].weeklyGoals[goal.week - 1].status
+  UPDATE_SELECTED_GOAL(state, weeklyGoal) {
+    state.selectedGoal.weeklyGoals = weeklyGoal
   }
 }
 

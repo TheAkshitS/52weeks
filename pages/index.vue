@@ -2,7 +2,12 @@
   <v-container>
     <v-row v-if="goals.length" class="mt-2">
       <v-col>
-        <GoalCard v-for="goal in goals" :key="goal.id" :goal="goal" />
+        <GoalCard
+          v-for="goal in goals"
+          :key="goal.id"
+          :goal="goal"
+          @click="setGoal(goal)"
+        />
       </v-col>
     </v-row>
     <v-row v-else>
@@ -29,13 +34,16 @@ export default {
     GoalCard
   },
 
-  data() {
-    return {}
-  },
-
   computed: {
     goals() {
       return this.$store.state.goal.goals
+    }
+  },
+
+  methods: {
+    setGoal(goal) {
+      this.$store.commit('goal/SELECT_GOAL', goal)
+      this.$router.push(`/goal/${goal.id}`)
     }
   },
 

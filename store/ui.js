@@ -5,6 +5,10 @@ export const state = () => ({
 export const mutations = {
   SET_SNACKBAR(state, snackbar) {
     state.snackbar = snackbar
+  },
+
+  RESET_SNACKBAR(state) {
+    state.snackbar.visible = false
   }
 }
 
@@ -14,10 +18,8 @@ export const actions = {
     snackbar.timeout = 1800
     snackbar.color = snackbar.color || 'success'
 
-    // TODO: Check visible
     setTimeout(function() {
-      snackbar.visible = false
-      commit('SET_SNACKBAR', snackbar)
+      commit('RESET_SNACKBAR')
     }, 1800)
 
     commit('SET_SNACKBAR', snackbar)
