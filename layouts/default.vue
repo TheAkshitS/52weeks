@@ -42,7 +42,7 @@
           >{{ item.title }}</v-btn
         >
       </div>
-      <v-btn icon name="settings" to="/settings"
+      <v-btn icon name="settings" to="/settings" nuxt
         ><v-icon>mdi-cog-outline</v-icon></v-btn
       >
     </v-app-bar>
