@@ -11,15 +11,14 @@
       </v-col>
     </v-row>
     <v-row v-else>
-      <v-col class="ma-5 grey--text">
+      <v-col class="grey--text">
         <p>You haven't added any goals yet.</p>
         <img
-          style="z-index: 0"
-          src="@/assets/images/wallet.svg"
+          src="@/assets/images/piggy_bank.svg"
           loading="lazy"
-          alt="Wallet image"
-          width="50%"
-          class="wallet-image ma-5"
+          alt="Piggybank background image"
+          height="200vh"
+          class="bg-image"
         />
       </v-col>
     </v-row>
@@ -62,8 +61,9 @@ export default {
 }
 </script>
 
-<style scoped>
-.wallet-image {
+<style>
+.bg-image {
+  z-index: 0;
   position: absolute;
   right: 0;
   bottom: 0;

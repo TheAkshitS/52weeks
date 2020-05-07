@@ -26,9 +26,9 @@
         >
       </div>
 
-      <v-avatar class="ma-1 pt-3 pr-2" size="125">
+      <v-avatar class="pt-3 pr-2" size="150">
         <img
-          src="@/assets/images/wallet.svg"
+          src="@/assets/images/piggy_bank.svg"
           loading="lazy"
           alt="Wallet image"
           class="wallet-image ma-5"

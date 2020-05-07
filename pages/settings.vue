@@ -37,6 +37,19 @@
         </v-btn-toggle>
       </v-col>
     </v-row>
+
+    <v-row>
+      <v-col class="grey--text">
+        <p>You haven't added any goals yet.</p>
+        <img
+          src="@/assets/images/settings.svg"
+          loading="lazy"
+          alt="Settings background image"
+          height="200vh"
+          class="bg-image"
+        />
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

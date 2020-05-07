@@ -12,11 +12,11 @@
           you’ll have saved $1,378.
         </p>
         <img
-          class="test ma-5"
-          src="@/assets/images/savings.svg"
+          src="@/assets/images/about.svg"
           loading="lazy"
-          alt="Wallet image"
-          width="50%"
+          alt="Wallet background image"
+          height="200vh"
+          class="image mb-5"
         />
       </v-col>
     </v-row>
@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style scoped>
-.test {
+.image {
   position: absolute;
   right: 0;
   bottom: 0;
