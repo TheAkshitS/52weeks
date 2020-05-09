@@ -25,7 +25,13 @@
       <v-col class="text-center pa-0 overline">
         <div>
           Made with ❤ by
-          <a target="_blank" href="https://akshit.dev">Akshit</a>
+
+          <a
+            style="text-decoration: none; "
+            target="_blank"
+            href="https://akshit.dev"
+            >Akshit</a
+          >
         </div>
       </v-col>
     </v-footer>
