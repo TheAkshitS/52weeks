@@ -27,11 +27,9 @@
 </template>
 
 <script>
-import GoalCard from '@/components/goal/GoalCard'
-
 export default {
   components: {
-    GoalCard
+    GoalCard: () => import('@/components/goal/GoalCard')
   },
 
   computed: {
