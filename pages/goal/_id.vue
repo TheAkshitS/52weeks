@@ -254,6 +254,14 @@ export default {
       handler() {
         this.calculateValues()
       }
+    },
+
+    remainingWeeks(to) {
+      if (to % 4 === 0)
+        this.$store.dispatch('ui/setSnackbar', {
+          text: `Congratutaions! ${this.totalGoalProgress}% goal completed 🥂`,
+          timeout: 2500
+        })
     }
   },
 
