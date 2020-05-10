@@ -226,8 +226,16 @@ export default {
 }
 </style>
 
+// Global styles
 <style>
 html {
   overflow-y: auto;
+}
+
+.bg-image {
+  z-index: 0;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 </style>
