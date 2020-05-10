@@ -1,7 +1,7 @@
 <template>
   <v-snackbar
+    bottom
     :value="snackbar.visible"
-    top
     :color="snackbar.color"
     :timeout="snackbar.timeout"
   >
