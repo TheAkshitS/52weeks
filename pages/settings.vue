@@ -40,7 +40,6 @@
 
     <v-row>
       <v-col class="grey--text">
-        <p>You haven't added any goals yet.</p>
         <img
           src="@/assets/images/settings.svg"
           loading="lazy"
