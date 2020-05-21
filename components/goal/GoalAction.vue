@@ -1,15 +1,57 @@
 <template>
-  <v-bottom-sheet v-model="goalActionWindowStatus">
-    <v-list>
-      <v-container>
-        <h2 class="title">
-          <span class="text-capitalize">{{ selectedAction }}</span> goal 🎯
-        </h2>
+  <div>
+    <v-dialog
+      v-if="!$vuetify.breakpoint.xsOnly"
+      v-model="goalActionWindowStatus"
+      width="500"
+    >
+      <v-card>
+        <v-card-title class="headline mb-5"
+          ><span class="text-capitalize">{{ selectedAction }}</span
+          >&nbsp;goal 🎯</v-card-title
+        >
+        <v-card-text>
+          <v-text-field
+            v-if="selectedAction === 'edit'"
+            v-model="newGoalName"
+            label="What is the name of
+              your goal?"
+            placeholder="Name"
+            outlined
+            required
+            append-icon="mdi-form-textbox"
+            @keyup.enter="goalOptionSubmit"
+          />
 
-        <v-row>
-          <v-col cols="12" md="4">
-            <div v-if="selectedAction === 'edit'">
+          <div v-else>
+            Are you sure, you want to delete this goal?
+          </div>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer />
+          <v-btn
+            class="mx-3 mb-3"
+            :color="selectedAction === 'edit' ? 'primary' : 'error'"
+            :disabled="selectedAction === 'edit' && goal.name === newGoalName"
+            rounded
+            @click="goalOptionSubmit"
+            >{{ selectedAction === 'edit' ? 'Ok' : 'Delete' }}</v-btn
+          >
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+    <v-bottom-sheet v-else v-model="goalActionWindowStatus">
+      <v-list>
+        <v-container>
+          <h2 class="title">
+            <span class="text-capitalize">{{ selectedAction }}</span> goal 🎯
+          </h2>
+
+          <v-row>
+            <v-col cols="12" md="4">
               <v-text-field
+                v-if="selectedAction === 'edit'"
                 v-model="newGoalName"
                 label="What is the name of
               your goal?"
@@ -19,26 +61,27 @@
                 append-icon="mdi-form-textbox"
                 @keyup.enter="goalOptionSubmit"
               />
-            </div>
-            <div v-else-if="selectedAction === 'delete'">
-              Are you sure, you want to delete this goal?
-            </div>
-          </v-col>
-        </v-row>
-        <v-row class="mb-5">
-          <v-spacer />
-          <v-btn
-            class="mx-3"
-            :color="selectedAction === 'edit' ? 'primary' : 'error'"
-            :disabled="selectedAction === 'edit' && goal.name === newGoalName"
-            rounded
-            @click="goalOptionSubmit"
-            >{{ selectedAction === 'edit' ? 'Ok' : 'Delete' }}</v-btn
-          >
-        </v-row>
-      </v-container>
-    </v-list>
-  </v-bottom-sheet>
+
+              <div v-else>
+                Are you sure, you want to delete this goal?
+              </div>
+            </v-col>
+          </v-row>
+          <v-row class="mb-5">
+            <v-spacer />
+            <v-btn
+              class="mx-3"
+              :color="selectedAction === 'edit' ? 'primary' : 'error'"
+              :disabled="selectedAction === 'edit' && goal.name === newGoalName"
+              rounded
+              @click="goalOptionSubmit"
+              >{{ selectedAction === 'edit' ? 'Ok' : 'Delete' }}</v-btn
+            >
+          </v-row>
+        </v-container>
+      </v-list>
+    </v-bottom-sheet>
+  </div>
 </template>
 
 <script>
