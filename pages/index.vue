@@ -1,15 +1,13 @@
 <template>
   <v-container>
     <v-row v-if="goals.length" class="mt-2">
-      <v-col>
-        <GoalCard
-          v-for="goal in goals"
-          :key="goal.id"
-          :goal="goal"
-          nuxt
-          @click="setGoal(goal)"
-        />
-      </v-col>
+      <GoalCard
+        v-for="goal in goals"
+        :key="goal.id"
+        :goal="goal"
+        nuxt
+        @click="setGoal(goal)"
+      />
     </v-row>
     <v-row v-else>
       <v-col class="grey--text">

@@ -1,6 +1,7 @@
 <template>
   <v-card
-    class="mx-auto my-3"
+    :class="$vuetify.breakpoint.xsOnly ? 'mx-auto' : 'mx-4'"
+    class="my-3"
     color="primary"
     dark
     width="320"
