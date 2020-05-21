@@ -27,7 +27,7 @@
             absolute
             color="primary"
             name="add goal"
-            @click="openBottomSheet"
+            @click="sheet = true"
           >
             <v-icon>mdi-plus</v-icon>
           </v-btn>
@@ -53,75 +53,7 @@
     </v-content>
 
     <!-- FOOTER -->
-    <v-bottom-sheet v-model="sheet">
-      <v-list>
-        <v-container>
-          <h2 class="title">Create a new new goal 🎯</h2>
-          <v-form @submit.prevent="createGoal">
-            <v-row>
-              <v-col cols="12" md="4">
-                <v-text-field
-                  v-model="goal.name"
-                  label="What is the name of your goal?"
-                  placeholder="Name"
-                  outlined
-                  required
-                  autocomplete="off"
-                  append-icon="mdi-form-textbox"
-                />
-                <v-text-field
-                  v-model.number="goal.amount"
-                  label="How much do you want to save per week?"
-                  placeholder="Amount"
-                  type="number"
-                  pattern="[0-9]*"
-                  outlined
-                  required
-                  autocomplete="off"
-                  append-icon="mdi-cash"
-                />
-                <v-menu
-                  v-model="dateMenu"
-                  :close-on-content-click="false"
-                  :nudge-right="40"
-                  transition="scale-transition"
-                  offset-y
-                  min-width="290px"
-                >
-                  <template v-slot:activator="{ on }">
-                    <v-text-field
-                      v-model="goal.startDate"
-                      label="When do you plan to start?"
-                      placeholder="Start date"
-                      outlined
-                      required
-                      append-icon="mdi-calendar-range"
-                      readonly
-                      v-on="on"
-                    ></v-text-field>
-                  </template>
-                  <v-date-picker
-                    v-model="goal.startDate"
-                    @input="dateMenu = false"
-                  ></v-date-picker>
-                </v-menu>
-              </v-col>
-            </v-row>
-            <v-row class="mb-5">
-              <v-spacer />
-              <v-btn
-                class="mx-3"
-                color="success"
-                rounded
-                type="submit"
-                :disabled="disabledCreateGoal"
-                >Create</v-btn
-              >
-            </v-row>
-          </v-form>
-        </v-container>
-      </v-list>
-    </v-bottom-sheet>
+    <goal-create :sheet.sync="sheet" />
 
     <app-bottom-nav :nav-items="navItems" />
 
@@ -133,7 +65,8 @@
 export default {
   components: {
     AppBottomNav: () => import('@/components/AppBottomNav'),
-    AppSnackbar: () => import('@/components/AppSnackbar')
+    AppSnackbar: () => import('@/components/AppSnackbar'),
+    GoalCreate: () => import('@/components/goal/GoalCreate')
   },
 
   data() {
@@ -142,15 +75,7 @@ export default {
       activeBtn: 1,
       drawer: false,
       hidden: true,
-      dateMenu: false,
-      goal: {
-        id: Math.random()
-          .toString(16)
-          .slice(2),
-        name: '',
-        amount: '',
-        startDate: new Date().toISOString().substring(0, 10)
-      },
+
       requiredRules: [(v) => !!v || 'Name is required'],
       navItems: [
         {
@@ -168,12 +93,6 @@ export default {
     }
   },
 
-  computed: {
-    disabledCreateGoal() {
-      return [this.goal.name, this.goal.amount].includes('')
-    }
-  },
-
   beforeMount() {
     // TODO: Refactor this
     localStorage.getItem('darkMode') === 'true'
@@ -186,28 +105,6 @@ export default {
   },
 
   methods: {
-    async createGoal() {
-      await this.$store.dispatch('goal/createGoal', this.goal)
-      this.sheet = false
-      this.$store.dispatch('ui/setSnackbar', { text: 'Goal created 🎉' })
-    },
-
-    openBottomSheet() {
-      this.resetNewGoalForm()
-      this.sheet = true
-    },
-
-    resetNewGoalForm() {
-      this.goal = {
-        id: Math.random()
-          .toString(16)
-          .slice(2),
-        name: '',
-        amount: '',
-        startDate: new Date().toISOString().substring(0, 10)
-      }
-    },
-
     changeRoute() {
       if (this.$route.name === 'index') this.$router.push('/')
       this.$router.go(-1)
