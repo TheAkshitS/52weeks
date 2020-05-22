@@ -1,6 +1,7 @@
 <template>
   <v-card
-    class="mx-auto my-4"
+    :class="$vuetify.breakpoint.mdAndDown ? 'mx-auto' : 'mx-5'"
+    class="my-4"
     color="primary"
     dark
     width="320"
