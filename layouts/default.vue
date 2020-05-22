@@ -18,19 +18,25 @@
       <v-spacer />
       <template v-slot:extension>
         <v-fab-transition>
-          <v-btn
-            v-show="!hidden && $route.name === 'index'"
-            small
-            fab
-            bottom
-            right
-            absolute
-            color="primary"
-            name="add goal"
-            @click="sheet = true"
-          >
-            <v-icon>mdi-plus</v-icon>
-          </v-btn>
+          <v-tooltip left>
+            <template v-slot:activator="{ on }">
+              <v-btn
+                v-show="!hidden && $route.name === 'index'"
+                small
+                fab
+                bottom
+                right
+                absolute
+                color="primary"
+                name="add goal"
+                v-on="on"
+                @click="sheet = true"
+              >
+                <v-icon>mdi-plus</v-icon>
+              </v-btn>
+            </template>
+            <span>Create a new Goal</span>
+          </v-tooltip>
         </v-fab-transition>
       </template>
       <div v-for="item in navItems" :key="item.title" class="mr-2">
