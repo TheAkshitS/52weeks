@@ -16,22 +16,22 @@
     "*.{js,vue}": "yarn lint"
   },
   "dependencies": {
-    "@nuxtjs/pwa": "^3.0.1",
+    "@nuxtjs/pwa": "^3.3.5",
     "nuxt": "^2.14.3",
     "nuxt-dayjs-module": "^1.1.2",
     "vuex-persistedstate": "^3.1.0"
   },
   "devDependencies": {
-    "@nuxtjs/eslint-config": "^3.1.0",
+    "@nuxtjs/eslint-config": "^4.0.0",
     "@nuxtjs/eslint-module": "^2.0.0",
     "@nuxtjs/vuetify": "^1.11.2",
     "babel-eslint": "^10.0.1",
-    "eslint": "^7.7.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint": "^7.25.0",
     "eslint-plugin-nuxt": ">=1.0.0",
     "eslint-plugin-prettier": "^3.1.4",
     "husky": "^4.0.0",
     "lint-staged": "^10.2.11",
-    "prettier": "^2.0.5"
+    "prettier": "^2.2.1"
   }
 }
