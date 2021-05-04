@@ -1,10 +1,9 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
-  mode: 'universal',
-  server: {
-    host: '0.0.0.0'
-  },
+  ssr: false,
+  target: 'static',
+  components: true,
   /*
    ** Headers of the page
    */
@@ -17,10 +16,10 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
-      }
+        content: process.env.npm_package_description || '',
+      },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
   /*
    ** Customize the progress-bar color
@@ -35,7 +34,7 @@ export default {
    */
   plugins: [
     { src: '~/plugins/localStorage.js', ssr: false },
-    '@/plugins/currency.js'
+    '@/plugins/currency.js',
   ],
   /*
    ** Nuxt.js dev-modules
@@ -43,19 +42,19 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
   ],
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/pwa', 'nuxt-dayjs-module'],
+  modules: ['@nuxtjs/pwa', '@nuxtjs/dayjs'],
 
   pwa: {
     manifest: {
       name: '52 Weeks Money Challenge 💸',
       short_name: '52 Week 💸',
-      description: 'A 52 Weeks Money Challenge app.'
-    }
+      description: 'A 52 Weeks Money Challenge app.',
+    },
   },
   workbox: {
     runtimeCaching: [
@@ -63,15 +62,15 @@ export default {
         urlPattern: 'https://fonts.googleapis.com/.*',
         handler: 'cacheFirst',
         method: 'GET',
-        strategyOptions: { cacheableResponse: { statuses: [0, 200] } }
+        strategyOptions: { cacheableResponse: { statuses: [0, 200] } },
       },
       {
         urlPattern: 'https://cdn.jsdelivr.net/.*',
         handler: 'cacheFirst',
         method: 'GET',
-        strategyOptions: { cacheableResponse: { statuses: [0, 200] } }
-      }
-    ]
+        strategyOptions: { cacheableResponse: { statuses: [0, 200] } },
+      },
+    ],
   },
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
@@ -85,10 +84,10 @@ export default {
           info: colors.teal.lighten1,
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
-          success: colors.green.accent3
-        }
-      }
-    }
+          success: colors.green.accent3,
+        },
+      },
+    },
   },
   /*
    ** Build configuration
@@ -97,6 +96,6 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
-  }
+    extend(config, ctx) {},
+  },
 }
