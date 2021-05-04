@@ -94,7 +94,7 @@ export default {
     }
   },
 
-  beforeMount() {
+  created() {
     // TODO: Refactor this
     localStorage.getItem('darkMode') === 'true'
       ? (this.$vuetify.theme.dark = true)
