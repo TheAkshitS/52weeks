@@ -74,12 +74,6 @@
 
 <script>
 export default {
-  components: {
-    AppBottomNav: () => import('@/components/AppBottomNav'),
-    AppSnackbar: () => import('@/components/AppSnackbar'),
-    GoalCreate: () => import('@/components/goal/GoalCreate'),
-  },
-
   data() {
     return {
       title: '52 Weeks Money Challenge 💪',

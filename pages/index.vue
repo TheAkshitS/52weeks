@@ -26,10 +26,6 @@
 
 <script>
 export default {
-  components: {
-    GoalCard: () => import('@/components/goal/GoalCard'),
-  },
-
   computed: {
     goals() {
       return this.$store.state.goal.goals

@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="mt-5">
     <v-row>
       <v-col>
         <v-card color="primary" class="mx-2 px-3" dark>
@@ -174,10 +174,6 @@
 
 <script>
 export default {
-  components: {
-    GoalAction: () => import('@/components/goal/GoalAction'),
-  },
-
   data() {
     return {
       showGoalActionWindow: false,
