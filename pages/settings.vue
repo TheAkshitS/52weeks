@@ -90,16 +90,15 @@ export default {
     changeTheme() {
       const metaThemeColor = document.querySelector('meta[name=theme-color]')
 
-      if (this.selectedTheme === 'dark') this.$vuetify.theme.dark = true
-      else this.$vuetify.theme.dark = false
+      this.selectedTheme === 'dark'
+        ? (this.$vuetify.theme.dark = true)
+        : (this.$vuetify.theme.dark = false)
 
-      if (localStorage)
-        localStorage.setItem('darkMode', this.selectedTheme === 'dark')
-      if (this.selectedTheme) {
-        metaThemeColor.setAttribute('content', '#212121')
-      } else {
-        metaThemeColor.setAttribute('content', '#0277bd')
-      }
+      localStorage.setItem('darkMode', this.selectedTheme === 'dark')
+
+      this.selectedTheme
+        ? metaThemeColor.setAttribute('content', '#212121')
+        : metaThemeColor.setAttribute('content', '#0277bd')
     },
   },
 
