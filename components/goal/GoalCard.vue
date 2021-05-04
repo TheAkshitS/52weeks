@@ -11,17 +11,27 @@
       <div>
         <v-card-title class="headline">{{ goal.name }}</v-card-title>
 
-        <v-card-subtitle class="overline"
-          ><v-icon left small class="ma">mdi-calendar-range</v-icon
-          >{{
-            $dayjs(goal.startDate).add(52, 'week').format('DD/MM/YY')
-          }}</v-card-subtitle
-        >
-        <v-card-subtitle
-          ><v-icon left class="ma-0">mdi-cash</v-icon>
-          {{
-            goal.finalGoalAmount.toLocaleString() | currency
-          }}</v-card-subtitle
+        <v-card-subtitle class="overline">
+          <v-tooltip right>
+            <template v-slot:activator="{ on, attrs }">
+              <span v-bind="attrs" v-on="on">
+                <v-icon left small class="ma">mdi-calendar-range</v-icon
+                >{{ $dayjs(goal.startDate).add(52, 'week').format('DD/MM/YY') }}
+              </span>
+            </template>
+            <span>Maturity date</span>
+          </v-tooltip>
+        </v-card-subtitle>
+        <v-card-subtitle>
+          <v-tooltip right>
+            <template v-slot:activator="{ on, attrs }">
+              <span v-bind="attrs" v-on="on">
+                <v-icon left class="ma-0">mdi-cash</v-icon>
+                {{ goal.finalGoalAmount.toLocaleString() | currency }}</span
+              >
+            </template>
+            <span>Maturity Amount</span>
+          </v-tooltip></v-card-subtitle
         >
       </div>
 
