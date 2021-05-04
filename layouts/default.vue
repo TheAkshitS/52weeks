@@ -48,14 +48,10 @@
           >{{ item.title }}</v-btn
         >
       </div>
-      <v-tooltip left>
-        <template v-slot:activator="{ on }">
-          <v-btn icon nuxt name="settings" to="/settings" v-on="on"
-            ><v-icon>mdi-cog-outline</v-icon></v-btn
-          >
-        </template>
-        <span>Settings</span>
-      </v-tooltip>
+
+      <v-btn icon nuxt name="settings" to="/settings"
+        ><v-icon>mdi-cog-outline</v-icon></v-btn
+      >
     </v-app-bar>
 
     <!-- MAIN CONTENT -->
