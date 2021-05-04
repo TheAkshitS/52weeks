@@ -175,7 +175,7 @@
 <script>
 export default {
   components: {
-    GoalAction: () => import('@/components/goal/GoalAction')
+    GoalAction: () => import('@/components/goal/GoalAction'),
   },
 
   data() {
@@ -185,18 +185,18 @@ export default {
       optionItems: [
         {
           icon: 'mdi-pencil-outline',
-          title: 'edit'
+          title: 'edit',
         },
         {
           icon: 'mdi-trash-can-outline',
-          title: 'delete'
-        }
+          title: 'delete',
+        },
       ],
       tableTitles: ['Week', 'Save', 'Date', 'Deposited'],
       goalObjectiveDialog: false,
       totalGoalProgress: 0,
       totalAmountDeposited: 0,
-      remainingWeeks: 52
+      remainingWeeks: 52,
     }
   },
 
@@ -212,8 +212,8 @@ export default {
 
       set() {
         this.$store.commit('goal/UPDATE_SELECTED_GOAL', this.weeklyGoals)
-      }
-    }
+      },
+    },
   },
 
   watch: {
@@ -223,16 +223,16 @@ export default {
 
       handler() {
         this.calculateValues()
-      }
+      },
     },
 
     remainingWeeks(to) {
       if (to % 4 === 0)
         this.$store.dispatch('ui/setSnackbar', {
           text: `Congratutaions! ${this.totalGoalProgress}% goal completed 🥂`,
-          timeout: 2500
+          timeout: 2500,
         })
-    }
+    },
   },
 
   methods: {
@@ -254,13 +254,13 @@ export default {
       this.totalAmountDeposited = amountDeposited
       this.totalGoalProgress = Math.floor((weeklyGoalCompleted / 52) * 100)
       this.remainingWeeks = 52 - weeklyGoalCompleted
-    }
+    },
   },
 
   head() {
     return {
-      title: `${this.goal.name}` || ''
+      title: `${this.goal.name}` || '',
     }
-  }
+  },
 }
 </script>

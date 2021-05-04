@@ -169,27 +169,25 @@ export default {
   props: {
     sheet: {
       default: false,
-      type: Boolean
-    }
+      type: Boolean,
+    },
   },
 
   data() {
     return {
       goal: {
-        id: Math.random()
-          .toString(16)
-          .slice(2),
+        id: Math.random().toString(16).slice(2),
         name: '',
         amount: '',
-        startDate: new Date().toISOString().substring(0, 10)
+        startDate: new Date().toISOString().substring(0, 10),
       },
       goalNameRules: [(v) => !!v || 'Name is required'],
 
       goalAmountRules: [
         (v) => !!v || 'Amount is required',
-        (v) => v >= 0 || 'Amount must be greater than 0'
+        (v) => v >= 0 || 'Amount must be greater than 0',
       ],
-      dateMenu: false
+      dateMenu: false,
     }
   },
 
@@ -201,11 +199,11 @@ export default {
 
       set() {
         this.$emit('update:sheet', false)
-      }
+      },
     },
     disabledCreateGoal() {
       return [this.goal.name, this.goal.amount].includes('')
-    }
+    },
   },
 
   methods: {
@@ -220,14 +218,12 @@ export default {
 
     resetNewGoalForm() {
       this.goal = {
-        id: Math.random()
-          .toString(16)
-          .slice(2),
+        id: Math.random().toString(16).slice(2),
         name: '',
         amount: '',
-        startDate: new Date().toISOString().substring(0, 10)
+        startDate: new Date().toISOString().substring(0, 10),
       }
-    }
-  }
+    },
+  },
 }
 </script>

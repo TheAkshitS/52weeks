@@ -58,9 +58,9 @@ export default {
     return {
       themes: [
         { name: 'light', icon: 'mdi-brightness-7' },
-        { name: 'dark', icon: 'mdi-brightness-4' }
+        { name: 'dark', icon: 'mdi-brightness-4' },
       ],
-      selectedTheme: ''
+      selectedTheme: '',
     }
   },
 
@@ -76,8 +76,8 @@ export default {
 
       set(value) {
         this.$store.commit('settings/SET_CURRENCY', value)
-      }
-    }
+      },
+    },
   },
 
   mounted() {
@@ -100,13 +100,13 @@ export default {
       } else {
         metaThemeColor.setAttribute('content', '#0277bd')
       }
-    }
+    },
   },
 
   head() {
     return {
-      title: 'Settings'
+      title: 'Settings',
     }
-  }
+  },
 }
 </script>

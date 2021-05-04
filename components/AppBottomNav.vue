@@ -18,8 +18,8 @@ export default {
   props: {
     navItems: {
       type: Array,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 }
 </script>

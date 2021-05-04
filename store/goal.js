@@ -12,7 +12,7 @@ export const mutations = {
       weeklyGoals.push({
         week,
         amountToBeDeposited: goal.amount * week,
-        status: false
+        status: false,
       })
     }
 
@@ -38,11 +38,11 @@ export const mutations = {
 
   UPDATE_SELECTED_GOAL(state, weeklyGoal) {
     state.selectedGoal.weeklyGoals = weeklyGoal
-  }
+  },
 }
 
 export const actions = {
   createGoal({ commit }, goal) {
     commit('PREPARE_GOAL', goal)
-  }
+  },
 }

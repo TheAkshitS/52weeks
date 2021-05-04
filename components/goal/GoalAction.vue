@@ -23,9 +23,7 @@
             @keyup.enter="goalOptionSubmit"
           />
 
-          <div v-else>
-            Are you sure, you want to delete this goal?
-          </div>
+          <div v-else>Are you sure, you want to delete this goal?</div>
         </v-card-text>
         <v-card-actions>
           <v-spacer />
@@ -62,9 +60,7 @@
                 @keyup.enter="goalOptionSubmit"
               />
 
-              <div v-else>
-                Are you sure, you want to delete this goal?
-              </div>
+              <div v-else>Are you sure, you want to delete this goal?</div>
             </v-col>
           </v-row>
           <v-row class="mb-5">
@@ -89,23 +85,23 @@ export default {
   props: {
     showGoalActionWindow: {
       type: Boolean,
-      default: false
+      default: false,
     },
 
     selectedAction: {
       type: String,
-      default: null
+      default: null,
     },
 
     goal: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
 
   data() {
     return {
-      newGoalName: this.goal.name
+      newGoalName: this.goal.name,
     }
   },
 
@@ -117,8 +113,8 @@ export default {
 
       set() {
         this.$emit('update:show-goal-action-window', false)
-      }
-    }
+      },
+    },
   },
 
   methods: {
@@ -136,7 +132,7 @@ export default {
         this.$store.dispatch('ui/setSnackbar', { text: 'Goal deleted ✔' })
         this.$router.push('/')
       }
-    }
-  }
+    },
+  },
 }
 </script>

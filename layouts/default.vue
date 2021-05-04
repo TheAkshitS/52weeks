@@ -10,7 +10,7 @@
               : 'mdi-keyboard-backspace'
           }}
         </v-icon>
-        <n-link to="/" style="text-decoration: none;"
+        <n-link to="/" style="text-decoration: none"
           >52 Weeks
           <span class="font-weight-medium">Money Challenge</span></n-link
         ></v-toolbar-title
@@ -59,9 +59,9 @@
     </v-app-bar>
 
     <!-- MAIN CONTENT -->
-    <v-content>
+    <v-main>
       <nuxt />
-    </v-content>
+    </v-main>
 
     <!-- FOOTER -->
     <goal-create :sheet.sync="sheet" />
@@ -77,7 +77,7 @@ export default {
   components: {
     AppBottomNav: () => import('@/components/AppBottomNav'),
     AppSnackbar: () => import('@/components/AppSnackbar'),
-    GoalCreate: () => import('@/components/goal/GoalCreate')
+    GoalCreate: () => import('@/components/goal/GoalCreate'),
   },
 
   data() {
@@ -92,15 +92,15 @@ export default {
         {
           icon: 'mdi-target',
           title: 'My Goals',
-          to: '/'
+          to: '/',
         },
         {
           icon: 'mdi-information-outline',
           title: 'About',
-          to: '/about'
-        }
+          to: '/about',
+        },
       ],
-      sheet: false
+      sheet: false,
     }
   },
 
@@ -119,8 +119,8 @@ export default {
     changeRoute() {
       if (this.$route.name === 'index') this.$router.push('/')
       this.$router.go(-1)
-    }
-  }
+    },
+  },
 }
 </script>
 

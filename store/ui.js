@@ -1,5 +1,5 @@
 export const state = () => ({
-  snackbar: {}
+  snackbar: {},
 })
 
 export const mutations = {
@@ -9,7 +9,7 @@ export const mutations = {
 
   RESET_SNACKBAR(state) {
     state.snackbar.visible = false
-  }
+  },
 }
 
 export const actions = {
@@ -18,10 +18,10 @@ export const actions = {
     snackbar.timeout = 1800
     snackbar.color = snackbar.color || 'success'
 
-    setTimeout(function() {
+    setTimeout(function () {
       commit('RESET_SNACKBAR')
     }, 1800)
 
     commit('SET_SNACKBAR', snackbar)
-  }
+  },
 }

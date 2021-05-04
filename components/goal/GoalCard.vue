@@ -14,9 +14,7 @@
         <v-card-subtitle class="overline"
           ><v-icon left small class="ma">mdi-calendar-range</v-icon
           >{{
-            $dayjs(goal.startDate)
-              .add(52, 'week')
-              .format('DD/MM/YY')
+            $dayjs(goal.startDate).add(52, 'week').format('DD/MM/YY')
           }}</v-card-subtitle
         >
         <v-card-subtitle
@@ -49,13 +47,13 @@ export default {
   props: {
     goal: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
 
   data() {
     return {
-      totalGoalProgress: 100
+      totalGoalProgress: 100,
     }
   },
 
@@ -72,7 +70,7 @@ export default {
       })
 
       this.totalGoalProgress = Math.floor((weeklyGoalCompleted / 52) * 100)
-    }
-  }
+    },
+  },
 }
 </script>

@@ -27,20 +27,20 @@
 <script>
 export default {
   components: {
-    GoalCard: () => import('@/components/goal/GoalCard')
+    GoalCard: () => import('@/components/goal/GoalCard'),
   },
 
   computed: {
     goals() {
       return this.$store.state.goal.goals
-    }
+    },
   },
 
   methods: {
     setGoal(goal) {
       this.$store.commit('goal/SELECT_GOAL', goal)
       this.$router.push(`/goal/${goal.id}`)
-    }
+    },
   },
 
   head() {
@@ -50,10 +50,10 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: 'Home 52 weeks money challenge'
-        }
-      ]
+          content: 'Home 52 weeks money challenge',
+        },
+      ],
     }
-  }
+  },
 }
 </script>
