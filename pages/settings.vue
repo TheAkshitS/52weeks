@@ -88,17 +88,11 @@ export default {
   methods: {
     // TODO: Refactor using Vuex
     changeTheme() {
-      const metaThemeColor = document.querySelector('meta[name=theme-color]')
-
       this.selectedTheme === 'dark'
         ? (this.$vuetify.theme.dark = true)
         : (this.$vuetify.theme.dark = false)
 
       localStorage.setItem('darkMode', this.selectedTheme === 'dark')
-
-      this.selectedTheme
-        ? metaThemeColor.setAttribute('content', '#212121')
-        : metaThemeColor.setAttribute('content', '#0277bd')
     },
   },
 
