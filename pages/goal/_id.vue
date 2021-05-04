@@ -93,7 +93,9 @@
                 </td>
                 <td>
                   <v-icon left class="ma-0">mdi-cash</v-icon>
-                  {{ weeklyGoal.amountToBeDeposited | currency }}
+                  {{
+                    weeklyGoal.amountToBeDeposited.toLocaleString() | currency
+                  }}
                 </td>
                 <td>
                   <v-checkbox
@@ -146,7 +148,9 @@
                 >
                   <td class="text-center">{{ weeklyGoal.week }}</td>
                   <td class="text-center">
-                    {{ weeklyGoal.amountToBeDeposited | currency }}
+                    {{
+                      weeklyGoal.amountToBeDeposited.toLocaleString() | currency
+                    }}
                   </td>
                   <td class="text-center">
                     {{
