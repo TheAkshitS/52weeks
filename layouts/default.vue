@@ -111,8 +111,7 @@ export default {
 
   methods: {
     changeRoute() {
-      if (this.$route.name === 'index') this.$router.push('/')
-      this.$router.go(-1)
+      if (this.$route.name !== 'index') this.$router.push('/')
     },
   },
 }
