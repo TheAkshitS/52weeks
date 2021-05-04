@@ -1,4 +1,1 @@
-export const strict = true
-
-export const state = () => ({})
-export const getters = {}
+export const strict = false
