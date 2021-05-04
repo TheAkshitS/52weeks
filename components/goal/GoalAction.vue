@@ -46,7 +46,7 @@
             <span class="text-capitalize">{{ selectedAction }}</span> goal 🎯
           </h2>
 
-          <v-row>
+          <v-row class="mt-2">
             <v-col cols="12" md="4">
               <v-text-field
                 v-if="selectedAction === 'edit'"
