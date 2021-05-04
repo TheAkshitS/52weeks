@@ -1,8 +1,8 @@
 <template>
-  <v-container class="pa-5">
+  <v-container class="pa-5 mt-2">
     <v-row>
       <v-col>
-        <h2 class="title mb-1">52 weeks money challenge</h2>
+        <h2 class="title mb-1">The concept</h2>
         <p class="body-1">
           The idea is simple: You start by socking away just $1 in the first
           week of the year, and then gradually increase your savings by a dollar

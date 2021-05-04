@@ -1,5 +1,5 @@
 <template>
-  <v-container class="pa-5">
+  <v-container class="pa-5 mt-5">
     <v-row class="ml-1">
       <h2 class="title">Preferences</h2>
     </v-row>
