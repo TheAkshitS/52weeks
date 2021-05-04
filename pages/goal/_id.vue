@@ -1,5 +1,8 @@
 <template>
-  <v-container class="mt-5">
+  <v-container
+    class="mt-5"
+    :class="$vuetify.breakpoint.mdAndDown ? '' : 'pl-16 pr-16'"
+  >
     <v-row>
       <v-col>
         <v-card color="primary" class="mx-2 px-3" dark>
@@ -18,7 +21,7 @@
                   </v-btn>
                 </template>
 
-                <v-list>
+                <v-list dense>
                   <v-list-item
                     v-for="item in optionItems"
                     :key="item.title"
@@ -66,26 +69,19 @@
       </v-col>
     </v-row>
 
-    <v-row>
+    <v-row class="mt-10">
       <v-col>
-        <v-simple-table class="mx-2">
+        <v-simple-table class="mx-2" fixed-header dense>
           <template v-slot:default>
             <thead>
               <tr>
-                <th>Deposited</th>
-                <th>Week</th>
-                <th>Amount</th>
+                <th class="subtitle-2">Week</th>
+                <th class="subtitle-2">Amount</th>
+                <th class="subtitle-2">Deposited</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="weeklyGoal in weeklyGoals" :key="weeklyGoal.week">
-                <td>
-                  <v-checkbox
-                    v-model="weeklyGoal.status"
-                    @change="calculateValues"
-                  />
-                </td>
-
                 <td>
                   Week {{ weeklyGoal.week }}<br /><v-icon left small
                     >mdi-calendar-range</v-icon
@@ -98,6 +94,12 @@
                 <td>
                   <v-icon left class="ma-0">mdi-cash</v-icon>
                   {{ weeklyGoal.amountToBeDeposited | currency }}
+                </td>
+                <td>
+                  <v-checkbox
+                    v-model="weeklyGoal.status"
+                    @change="calculateValues"
+                  />
                 </td>
               </tr>
             </tbody>
@@ -260,3 +262,10 @@ export default {
   },
 }
 </script>
+
+<style>
+/* TODO: fix table height */
+.v-data-table__wrapper {
+  height: (300px + 200px) !important;
+}
+</style>
