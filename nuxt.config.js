@@ -47,7 +47,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/pwa', '@nuxtjs/dayjs'],
+  modules: ['@nuxtjs/pwa', '@nuxtjs/dayjs', '@nuxtjs/robots'],
 
   pwa: {
     manifest: {
